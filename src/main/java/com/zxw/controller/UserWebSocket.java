@@ -38,6 +38,13 @@ public class UserWebSocket {
     /*######################## 一、根据分组编码，接收 消息(用户信息)的 websocket服务器端 ########################*/
     @OnOpen
     public void openSession(@PathParam("groupCode") String groupCode,Session session) {
+        // ##-------- 获取请求路径中携带的信息
+        // {groupCode=dkh}
+        Map<String, String> map = session.getPathParameters();
+        // emailWsParam=1
+        String str = session.getQueryString();
+        // /userws/dkh?emailWsParam=1
+        String uri = session.getRequestURI().toString();
         List<Session> list = ONLINE_USER_SESSIONS.get(groupCode);
         if (null == list) {
             list = new ArrayList<>();
