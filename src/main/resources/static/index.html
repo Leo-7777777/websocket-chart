@@ -125,8 +125,10 @@
         // 监听 握手成功/建立连接
         ws.onopen = function () {
             console.log("建立连接...");
+            var paramsObj={province:"河北省",city:"石家庄市"};
+            var params=JSON.stringify(paramsObj);
             // params：可以是字符串、二进制数据
-            //send(params);
+            ws.send(params);
         };
         // 前端接收消息/监听后端的消息推送
         ws.onmessage = function (event) {
