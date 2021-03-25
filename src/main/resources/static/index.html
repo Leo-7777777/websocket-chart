@@ -110,10 +110,10 @@
         var sexParam=$("#sexParam").val();
         var emailParam=$("#emailParam").val();
         // 根据分组编码，列表查询用户表
-        var getUrl1="/user/dkh/queryByGroupCode;
+        var getUrl1="/user/dkh/queryByGroupCode";
         // 根据分组编码、前台页面条件，列表查询用户表
         var getUrl2="/user/dkh/queryByParams?sexParam="+sexParam+"&emailParam="+emailParam;
-        $.get(getUrl2, function (data) {
+        $.get(getUrl1, function (data) {
             // 渲染数据
             option.series[0].data[0].name = "女";
             option.series[0].data[0].value = data.girl;
