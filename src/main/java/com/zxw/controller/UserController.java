@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -26,24 +27,33 @@ import java.util.List;
 public class UserController {
     @Resource
     UserService userService;
-
-    @GetMapping("/list")
-    public List<UserDO> userList() {
-        return userService.selectUserList();
-    }
-
     /**
-     * @Author Zhouxw
-     * @Date 2020/09/21 13:23
-     * @Description 根据分组编码，获取用户信息
-     * @Param [groupCode]
-     * @Return com.zxw.dto.ChartDTO
-     */
-    @GetMapping("/{groupCode}")
-    public UserChartDTO selectUserChartDTOByGroupCode(@PathVariable String groupCode) {
+     * Title: selectUserChartDTOByGroupCode
+     * Description: 根据分组编码，获取用户信息
+     * @Param groupCode     分组编码
+     * @Param params        前台页面查询条件
+     * @return: com.zxw.dto.UserChartDTO
+     * Author: ljx
+     * Date: 2021/3/25 0025 下午 4:32
+      */
+    @GetMapping("/{groupCode}/queryByGroupCode")
+    public UserChartDTO selectUserChartDTOByGroupCode(@PathVariable String groupCode,@RequestParam Map<String,Object> params) {
         return userService.dealUserChartDTOByGroupCode(groupCode);
     }
-
+    /**
+     * Title: selectUserChartDTOByParams
+     * Description: 根据分组编码、前台页面条件，列表查询
+     * @Param groupCode:
+     * @Param params:
+     * @return: com.zxw.dto.UserChartDTO
+     * Author: ljx
+     * Date: 2021/3/25 0025 下午 5:34
+      */
+    @GetMapping("/{groupCode}/queryByParams")
+    public UserChartDTO selectUserChartDTOByParams(@PathVariable String groupCode,@RequestParam Map<String,Object> params) {
+        params.put("groupCode",groupCode);
+        return userService.dealUserChartDTOByParams(params);
+    }
     /**
      * webUrll测试http://localhost:8090/add
      * Description: 新增一条用户数据；并返回拼装的用户数据

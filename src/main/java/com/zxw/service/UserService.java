@@ -12,6 +12,8 @@ public interface UserService {
     UserDO addUser(UserDO user);
 
     List<Map<String, Object>> selectSexNumListByGroupCode(String groupCode);
-
     UserChartDTO dealUserChartDTOByGroupCode(String groupCode);
+
+    List<Map<String, Object>> selectSexNumListByParams(Map<String, Object> params);
+    UserChartDTO dealUserChartDTOByParams(Map<String, Object> params);
 }
