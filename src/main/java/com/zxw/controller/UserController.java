@@ -29,7 +29,7 @@ public class UserController {
     UserService userService;
     /**
      * Title: selectUserChartDTOByGroupCode
-     * Description: 根据分组编码，获取用户信息
+     * Description: 根据分组编码，列表查询用户表
      * @Param groupCode     分组编码
      * @Param params        前台页面查询条件
      * @return: com.zxw.dto.UserChartDTO
@@ -42,7 +42,7 @@ public class UserController {
     }
     /**
      * Title: selectUserChartDTOByParams
-     * Description: 根据分组编码、前台页面条件，列表查询
+     * Description: 根据分组编码、前台页面条件，列表查询用户表
      * @Param groupCode:
      * @Param params:
      * @return: com.zxw.dto.UserChartDTO
