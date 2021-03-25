@@ -4,6 +4,7 @@ import com.zxw.dto.UserChartDTO;
 import com.zxw.model.UserDO;
 import com.zxw.service.UserService;
 import com.alibaba.fastjson.JSON;
+import com.zxw.utils.WebSocketSendUtil;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -60,7 +61,7 @@ public class UserController {
         UserDO result = userService.addUser(user);
         //拼装数据DTO通知前端
         UserChartDTO userChartDTO = userService.dealUserChartDTOByGroupCode(user.getGroupCode());
-        UserWebSocket.sendMessage(user.getGroupCode(), JSON.toJSONString(userChartDTO));
+        WebSocketSendUtil.sendMessage(user.getGroupCode(), JSON.toJSONString(userChartDTO));
         return result;
     }
 }

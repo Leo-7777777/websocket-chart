@@ -1,5 +1,6 @@
 package com.zxw.controller;
 
+import com.zxw.utils.WebSocketSendUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -15,7 +16,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  *
- * @Description: 根据分组编码，接收、发送 消息(用户信息)的 websocket服务器端
+ * @Description: 接收 消息(用户信息)的 websocket服务器端
  * @FR功能需求：
  * @ImportJar:
  * @ApiGrammer规则：
@@ -30,14 +31,10 @@ import java.util.concurrent.ConcurrentHashMap;
 @Component
 public class UserWebSocket {
     private static final Logger logger = LoggerFactory.getLogger(UserWebSocket.class);
-    /*######################## 一、接收 消息(用户信息)的 websocket服务器端 ########################*/
-    /**
-     * @Description 存储 websocket session
-     */
-    public static final Map<String, List<Session>> ONLINE_USER_SESSIONS = new ConcurrentHashMap<>();
+    /*######################## 一、根据分组编码，接收 消息(用户信息)的 websocket服务器端 ########################*/
     @OnOpen
     public void openSession(@PathParam("groupCode") String groupCode, Session session) {
-        List<Session> list = ONLINE_USER_SESSIONS.get(groupCode);
+        List<Session> list = WebSocketSendUtil.ONLINE_USER_SESSIONS.get(groupCode);
         if (null == list) {
             list = new ArrayList<>();
         }
@@ -45,7 +42,7 @@ public class UserWebSocket {
         if (!list.contains(session)) {
             list.add(session);
         }
-        ONLINE_USER_SESSIONS.put(groupCode, list);
+        WebSocketSendUtil.ONLINE_USER_SESSIONS.put(groupCode, list);
     }
 
     @OnMessage
@@ -56,7 +53,7 @@ public class UserWebSocket {
     @OnClose
     public void onClose(@PathParam("groupCode") String groupCode, Session session) {
         //当前的Session 移除
-        List<Session> list = ONLINE_USER_SESSIONS.get(groupCode);
+        List<Session> list = WebSocketSendUtil.ONLINE_USER_SESSIONS.get(groupCode);
         list.remove(session);
         try {
             session.close();
@@ -73,44 +70,5 @@ public class UserWebSocket {
             e.printStackTrace();
         }
         System.out.println("Throwable msg " + throwable.getMessage());
-    }
-    /*######################## 二、发送 消息(用户信息)的 websocket服务器端 工具方法########################*/
-    /**
-     * @Author Zhouxw
-     * @Date 2020/09/21 13:19
-     * @Description 向客户端发送信息
-     * @Param [session, message]
-     * @Return void
-     */
-    public static void sendMessage(Session session, String message) {
-        if (session == null) {
-            return;
-        }
-        final RemoteEndpoint.Basic basic = session.getBasicRemote();
-        if (basic == null) {
-            return;
-        }
-        try {
-            basic.sendText(message);
-        } catch (IOException e) {
-            logger.error("sendMessage IOException ", e);
-        }
-    }
-    /**
-     * Title: sendMessage
-     * Description: 根据分组编码，发送 消息(用户信息)
-     * @Param key:
-     * @Param message:
-     * @return: void
-     * Author: ljx
-     * Date: 2021/3/24 0024 下午 3:35
-      */
-    public static void sendMessage(String key, String message) {
-        List<Session> list = ONLINE_USER_SESSIONS.get(key);
-        list.stream().forEach(se -> {
-            if(se.isOpen()){
-                sendMessage(se, message);
-            }
-        });
     }
 }
