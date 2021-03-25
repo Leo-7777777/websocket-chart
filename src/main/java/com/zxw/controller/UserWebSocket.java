@@ -3,6 +3,7 @@ package com.zxw.controller;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.websocket.*;
 import javax.websocket.server.PathParam;
@@ -36,7 +37,7 @@ public class UserWebSocket {
     public static final Map<String, List<Session>> ONLINE_USER_SESSIONS = new ConcurrentHashMap<>();
     /*######################## 一、根据分组编码，接收 消息(用户信息)的 websocket服务器端 ########################*/
     @OnOpen
-    public void openSession(@PathParam("groupCode") String groupCode, Session session) {
+    public void openSession(@PathParam("groupCode") String groupCode,Session session) {
         List<Session> list = ONLINE_USER_SESSIONS.get(groupCode);
         if (null == list) {
             list = new ArrayList<>();
