@@ -11,6 +11,9 @@ public class UserDO {
     @Id
     @GeneratedValue
     private Long id;
+    /**
+     * 分组编码
+     */
     @Column(nullable = false)
     private String groupCode;
     @Column(nullable = false, unique = true)
