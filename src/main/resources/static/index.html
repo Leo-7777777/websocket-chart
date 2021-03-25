@@ -9,8 +9,7 @@
 </head>
 <body class="container" style="width: 60%">
 <div id="queryConditions">
-    <input id="sexParam" name="sexParam" placeholder="请输入性别：0 女，1 男，其他 未知" value="" />
-    <input id="emailParam" name="emailParam" placeholder="请输入邮箱" value="" />
+    <input id="emailParam" name="emailParam" placeholder="请输入邮箱" value="1" />
 </div>
 <div class="form-group"></br>
     <div class="row">
@@ -112,8 +111,8 @@
         // 根据分组编码，列表查询用户表
         var getUrl1="/user/dkh/queryByGroupCode";
         // 根据分组编码、前台页面条件，列表查询用户表
-        var getUrl2="/user/dkh/queryByParams?sexParam="+sexParam+"&emailParam="+emailParam;
-        $.get(getUrl1, function (data) {
+        var getUrl2="/user/dkh/queryByParams?emailParam="+emailParam;
+        $.get(getUrl2, function (data) {
             // 渲染数据
             option.series[0].data[0].name = "女";
             option.series[0].data[0].value = data.girl;

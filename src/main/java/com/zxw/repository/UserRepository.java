@@ -33,6 +33,6 @@ public interface UserRepository extends JpaRepository<UserDO, Long> {
      * Author: ljx
      * Date: 2021/3/25 0025 下午 4:43
       */
-    @Query(value = "SELECT sex AS sex,count(sex) AS sexNum FROM UserDO WHERE 1=1 and group_code= :groupCode  and if(:sexParam!=null,sex=:sexParam,1=1) and if(:emailParam!=null,email LIKE CONCAT('%',:emailParam,'%'),1=1) GROUP BY sex ",  nativeQuery = true)
-    List<Map<String, Object>> selectSexNumListByParams(@Param("groupCode") String groupCode,@Param("sexParam") Integer sexParam,@Param("emailParam") String emailParam);
+    @Query(value = "SELECT sex AS sex,count(sex) AS sexNum FROM UserDO WHERE 1=1 and group_code= :groupCode  and if(:emailParam!='',email LIKE CONCAT('%',:emailParam,'%'),1=1) GROUP BY sex ",  nativeQuery = true)
+    List<Map<String, Object>> selectSexNumListByParams(@Param("groupCode") String groupCode,@Param("emailParam") String emailParam);
 }

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.beans.Transient;
+import java.math.BigInteger;
 import java.util.List;
 import java.util.Map;
 
@@ -61,13 +62,8 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<Map<String, Object>> selectSexNumListByParams(Map<String, Object> params) {
         String groupCode= (String)params.get("groupCode");
-        String sexParamStr=(String)params.get("sexParam");
-        Integer sexParam=null;
-        if(!"".equals(sexParamStr)){
-            sexParam=Integer.valueOf(sexParamStr);
-        }
         String emailParam=(String)params.get("emailParam");
-        return userRepository.selectSexNumListByParams(groupCode,sexParam,emailParam);
+        return userRepository.selectSexNumListByParams(groupCode,emailParam);
     }
     @Override
     public UserChartDTO dealUserChartDTOByParams(Map<String, Object> params) {
@@ -77,13 +73,13 @@ public class UserServiceImpl implements UserService {
             mapList.forEach((Map<String, Object> map) -> {
                 switch ((int) map.get("sex")) {
                     case 0:
-                        userChartDTO.setGirl((long) map.get("sexNum"));
+                        userChartDTO.setGirl(((BigInteger)map.get("sexNum")).longValue());
                         break;
                     case 1:
-                        userChartDTO.setBoy((long) map.get("sexNum"));
+                        userChartDTO.setBoy(((BigInteger)map.get("sexNum")).longValue());
                         break;
                     default:
-                        userChartDTO.setUnknown((long) map.get("sexNum"));
+                        userChartDTO.setUnknown(((BigInteger)map.get("sexNum")).longValue());
                         break;
                 }
             });
