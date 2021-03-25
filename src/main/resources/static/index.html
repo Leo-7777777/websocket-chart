@@ -110,7 +110,7 @@
         var sexParam=$("#sexParam").val();
         var emailParam=$("#emailParam").val();
         // 根据分组编码，列表查询用户表
-        var getUrl1="/user/dkh/queryByGroupCode?sexParam="+sexParam+"&emailParam="+emailParam;
+        var getUrl1="/user/dkh/queryByGroupCode;
         // 根据分组编码、前台页面条件，列表查询用户表
         var getUrl2="/user/dkh/queryByParams?sexParam="+sexParam+"&emailParam="+emailParam;
         $.get(getUrl2, function (data) {

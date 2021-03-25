@@ -37,7 +37,7 @@ public class UserController {
      * Date: 2021/3/25 0025 下午 4:32
       */
     @GetMapping("/{groupCode}/queryByGroupCode")
-    public UserChartDTO selectUserChartDTOByGroupCode(@PathVariable String groupCode,@RequestParam Map<String,Object> params) {
+    public UserChartDTO selectUserChartDTOByGroupCode(@PathVariable String groupCode) {
         return userService.dealUserChartDTOByGroupCode(groupCode);
     }
     /**
