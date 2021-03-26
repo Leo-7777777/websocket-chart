@@ -16,9 +16,10 @@
 * spring.datasource.url=修改数据库信息，ip、数据库名；
 * server.port=IDEA启动项目/浏览器访问项目地址中的端口号8090
 ##2、启动
-&emsp;springboot主配置文件ChartApplication.java》点击按钮Debug
+&emsp;SpringBoot项目的主配置文件ChartApplication.java》点击按钮Debug
 ##3、启动后浏览器默认访问地址
 &emsp;http://localhost:8090
+<br/>&emsp;SpringBoot项目在启动后，首先会去静态资源路径（resources/static）下查找 index.html 作为首页文件。
 #三、项目部署linux服务器
 ##1、项目打包
 ##2、linux服务器地址
