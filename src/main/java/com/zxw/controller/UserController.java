@@ -11,7 +11,7 @@ import java.util.HashMap;
 import java.util.Map;
 /**
  *
- * @Description:
+ * @Description: 用户信息
  * @FR功能需求：
  * @ImportJar:
  * @ApiGrammer规则：

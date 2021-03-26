@@ -20,6 +20,7 @@
 ##3、启动后浏览器默认访问地址
 &emsp;http://localhost:8090
 <br/>&emsp;SpringBoot项目在启动后，首先会去静态资源路径（resources/static）下查找 index.html 作为首页文件。
+<br/>&emsp;如果在静态资源路径（resources/static）下找不到 index.html，则会到（resources/templates）目录下找 index.html（使用 Thymeleaf 模版）作为首页文件。
 #三、项目部署linux服务器
 ##1、项目打包
 ##2、linux服务器地址
