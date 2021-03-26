@@ -60,7 +60,7 @@
                 alert("组名不能为空");
                 return;
             }
-            $.post('/user/add', {userName: userName, sex: sex, groupCode: groupCode, email: email}, function (data) {
+            $.post('/user/addAndQueryByGroupCode', {groupCode: groupCode,userName: userName, sex: sex,  email: email}, function (data) {
                 console.log(data);
                 alert('新增成功！观察统计图实时变化');
             });
