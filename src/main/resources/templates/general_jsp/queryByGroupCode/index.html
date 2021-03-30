@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>图表</title>
-
+<!--
+http://localhost:8090/websocket-chart/index/toQueryByGroupCodeIndex
+-->
     <script src="js/echarts.min.js"></script>
     <script src="js/jquery-3.2.1.min.js"></script>
     <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -85,9 +87,10 @@
     };
     var urlPrefix = 'ws://192.168.21.21:8090/userws/';
     var ws = null;
-    var groupCode="dkh";
+    var groupCode=null;
     // ##---------- 二、页面加载执行
     $(function () {
+        groupCode="dkh";
         // 先ajax_后台根据分组编码，获取用户信息；并在页面图表中第一次初始化显示此数据；
         firstInitChartData();
         // 然后打开长连接实时监听
