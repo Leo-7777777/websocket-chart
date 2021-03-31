@@ -33,5 +33,5 @@
 	（1）ps -ef | grep websocket-chart.jar查出进程号，kill -9 进程号；
 	（2）替换jar；
 	（3） ./startup.sh 启动
-##4、启动后浏览器默认访问地址
+##5、启动后浏览器默认访问地址
 &emsp;http://192.168.21.120:8089/websocket-chart
