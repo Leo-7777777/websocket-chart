@@ -14,14 +14,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * Date: 2021/3/26 0026 上午 10:44
  */
 @Controller
-@RequestMapping("index")
+@RequestMapping("/index")
 public class IndexController {
     /**
      * webUrl测试http://localhost:8090/websocket-chart/index/toQueryByGroupCodeIndex
      * Description: 跳转单条件图表页面
      * @return: jspStr
       */
-    @RequestMapping("toQueryByGroupCodeIndex")
+    @RequestMapping("/toQueryByGroupCodeIndex")
     public String  toQueryByGroupCodeIndexJspFun1(){
         String jspStr="templates/general_jsp/queryByGroupCode/index";
         return jspStr;
@@ -35,7 +35,7 @@ public class IndexController {
      * Description: 跳转多条件图表页面
      * @return: jspStr
       */
-    @RequestMapping("toQueryByGroupCodeAndParamsIndex")
+    @RequestMapping("/toQueryByGroupCodeAndParamsIndex")
     public String  toQueryByGroupCodeAndParamsIndex1(){
         String jspStr="templates/general_jsp/queryByGroupCodeAndParams/index";
         return jspStr;

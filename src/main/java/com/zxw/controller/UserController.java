@@ -27,7 +27,7 @@ public class UserController {
     @Resource
     UserService userService;
     /**
-     * Title: selectUserChartDTOByGroupCode
+     * webUrl测试
      * Description: 根据分组编码，列表查询用户表
      * @Param groupCode     分组编码
      * @Param params        前台页面查询条件

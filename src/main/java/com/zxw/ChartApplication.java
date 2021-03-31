@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.web.socket.config.annotation.EnableWebSocket;
 import org.springframework.web.socket.server.standard.ServerEndpointExporter;
 /**
- * Description: springboot主配置文件
+ * Description: springboot主配置文件——启动程序
  * @Param null:
  * @return: null
  * Author: ljx
@@ -18,6 +18,7 @@ public class ChartApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(ChartApplication.class, args);
+		System.out.println("服务启动成功！");
 	}
 
 	@Bean
