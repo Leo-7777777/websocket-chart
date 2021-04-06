@@ -92,7 +92,7 @@ public class UserController {
         Map<String, Object> params=new HashMap<String, Object>();
         params.put("groupCode",groupCode);
         params.put("emailParam",emailParam);
-        // 拼装的用户数据（根据分组编码，列表查询用户表）
+        // 拼装的用户数据（根据分组编码、前台页面条件，列表查询用户表）
         UserChartDTO userChartDTO = userService.dealUserChartDTOByParams(params);
         // 通知前端
         UserWebSocket.sendMessage(user.getGroupCode(), JSON.toJSONString(userChartDTO));
