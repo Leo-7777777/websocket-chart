@@ -114,15 +114,10 @@ http://localhost:8090/websocket-chart/index/toQueryByGroupCodeAndParamsIndex
         // 根据分组编码、前台页面条件，列表查询用户表
         var getUrl2="/user/"+groupCode+"/queryByParams?emailParam="+emailParam;
         $.get(getUrl2, function (data) {
-            // 渲染数据
-            option.series[0].data[0].name = "女";
-            option.series[0].data[0].value = data.girl;
-            option.series[0].data[1].name = "男";
-            option.series[0].data[1].value = data.boy;
-            option.series[0].data[2].name = "未知";
-            option.series[0].data[2].value = data.unknown;
-            // 使用刚指定的配置项和数据显示图表。
-            myChart.setOption(option);
+            // 拿到数据
+            var jsonObject =data;
+            // 渲染数据到图表
+            renderDataToEchart(jsonObject);
         });
     }
     /**
@@ -146,20 +141,27 @@ http://localhost:8090/websocket-chart/index/toQueryByGroupCodeAndParamsIndex
             console.log("后台数据已更新...");
             // 拿到数据
             var jsonObject = JSON.parse(event.data);
-            // 渲染数据
-            option.series[0].data[0].name = "女";
-            option.series[0].data[0].value = jsonObject.girl;
-            option.series[0].data[1].name = "男";
-            option.series[0].data[1].value = jsonObject.boy;
-            option.series[0].data[2].name = "未知";
-            option.series[0].data[2].value = jsonObject.unknown;
-            // 使用刚指定的配置项和数据显示图表。
-            myChart.setOption(option);
+            // 渲染数据到图表
+            renderDataToEchart(jsonObject);
         }
         // 监听断开连接
         ws.onclose = function () {
             console.log("关闭 websocket 连接...");
         }
+    }
+    /**
+     * @Description： 渲染数据到图表
+     */
+    function renderDataToEchart(jsonObject){
+        // 渲染数据
+        option.series[0].data[0].name = "女";
+        option.series[0].data[0].value = jsonObject.girl;
+        option.series[0].data[1].name = "男";
+        option.series[0].data[1].value = jsonObject.boy;
+        option.series[0].data[2].name = "未知";
+        option.series[0].data[2].value = jsonObject.unknown;
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
     }
 </script>
 </body>
