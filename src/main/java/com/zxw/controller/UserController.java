@@ -1,5 +1,6 @@
 package com.zxw.controller;
 
+import com.ljx.wcneln._09util.MapGetter;
 import com.zxw.dto.UserChartDTO;
 import com.zxw.model.UserDO;
 import com.zxw.service.UserService;
@@ -89,7 +90,7 @@ public class UserController {
         UserDO result = userService.addUser(user);
         String groupCode=user.getGroupCode();
         String emailParam=user.getEmail();
-        Map<String, Object> params=new HashMap<String, Object>();
+        Map<String, Object> params=new HashMap<String, Object>(MapGetter.defaultInitialCapacity());
         params.put("groupCode",groupCode);
         params.put("emailParam",emailParam);
         // 拼装的用户数据（根据分组编码、前台页面条件，列表查询用户表）
