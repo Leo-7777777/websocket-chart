@@ -38,7 +38,7 @@ public class UserServiceImpl implements UserService {
         return userRepository.selectSexNumListByGroupCode(groupCode);
     }
     @Override
-    public UserChartDTO dealUserChartDTOByGroupCode(String groupCode) {
+    public UserChartDTO dealUserChartDtoByGroupCode(String groupCode) {
         UserChartDTO userChartDTO = new UserChartDTO();
         List<Map<String, Object>> mapList = selectSexNumListByGroupCode(groupCode);
         if (null != mapList && mapList.size() > 0) {
@@ -66,7 +66,7 @@ public class UserServiceImpl implements UserService {
         return userRepository.selectSexNumListByParams(groupCode,emailParam);
     }
     @Override
-    public UserChartDTO dealUserChartDTOByParams(Map<String, Object> params) {
+    public UserChartDTO dealUserChartDtoByParams(Map<String, Object> params) {
         UserChartDTO userChartDTO = new UserChartDTO();
         List<Map<String, Object>> mapList = selectSexNumListByParams(params);
         if (null != mapList && mapList.size() > 0) {

@@ -36,8 +36,8 @@ public class UserController {
      * Date: 2021/3/25 0025 下午 4:32
       */
     @GetMapping("/{groupCode}/queryByGroupCode")
-    public UserChartDTO selectUserChartDTOByGroupCode(@PathVariable String groupCode) {
-        return userService.dealUserChartDTOByGroupCode(groupCode);
+    public UserChartDTO selectUserChartDtoByGroupCode(@PathVariable String groupCode) {
+        return userService.dealUserChartDtoByGroupCode(groupCode);
     }
     /**
      * webUrll测试http://localhost:8090/addAndQueryByGroupCode
@@ -54,7 +54,7 @@ public class UserController {
         UserDO result = userService.addUser(user);
         String groupCode=user.getGroupCode();
         // 拼装的用户数据（根据分组编码，列表查询用户表）
-        UserChartDTO userChartDTO = userService.dealUserChartDTOByGroupCode(groupCode);
+        UserChartDTO userChartDTO = userService.dealUserChartDtoByGroupCode(groupCode);
         // 通知前端
         UserWebSocket.sendMessage(user.getGroupCode(), JSON.toJSONString(userChartDTO));
         return result;
@@ -71,7 +71,7 @@ public class UserController {
     @GetMapping("/{groupCode}/queryByParams")
     public UserChartDTO selectUserChartDTOByParams(@PathVariable String groupCode,@RequestParam Map<String,Object> params) {
         params.put("groupCode",groupCode);
-        return userService.dealUserChartDTOByParams(params);
+        return userService.dealUserChartDtoByParams(params);
     }
 
     /**
@@ -93,7 +93,7 @@ public class UserController {
         params.put("groupCode",groupCode);
         params.put("emailParam",emailParam);
         // 拼装的用户数据（根据分组编码、前台页面条件，列表查询用户表）
-        UserChartDTO userChartDTO = userService.dealUserChartDTOByParams(params);
+        UserChartDTO userChartDTO = userService.dealUserChartDtoByParams(params);
         // 通知前端
         UserWebSocket.sendMessage(user.getGroupCode(), JSON.toJSONString(userChartDTO));
         return result;
