@@ -1,16 +1,30 @@
-package com.zxw.model;
-
-
+package com.zxw.pojo.doo;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-
+/**
+ *
+* @Description: 实例类对象——用户表userdo
+* @FR功能需求：
+* @ImportJar:
+* @ApiGrammer规则：
+* @Remark:
+* @AlibabaCodeStatuteScanError：
+* @CodeBug解决:
+* @Debug调试：
+* @date
+* @author  ljx
+*
+ */
 @Entity
 public class UserDO {
     @Id
     @GeneratedValue
     private Long id;
+    /**
+     * 分组编码
+     */
     @Column(nullable = false)
     private String groupCode;
     @Column(nullable = false, unique = true)
@@ -68,5 +82,19 @@ public class UserDO {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    /**
+     * 右键》Source》Generate toString()... 目的是为了属性能打印出来
+     */
+    @Override
+    public String toString() {
+        return "UserDO{" +
+                "id=" + id +
+                ", groupCode='" + groupCode + '\'' +
+                ", userName='" + userName + '\'' +
+                ", sex=" + sex +
+                ", email='" + email + '\'' +
+                '}';
     }
 }

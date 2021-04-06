@@ -2,12 +2,18 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>图表</title>
+    <title>图表（根据分组编码、前台页面条件，列表查询用户表）</title>
+<!--
+http://localhost:8090/websocket-chart/index/toQueryByGroupCodeAndParamsIndex
+-->
     <script src="js/echarts.min.js"></script>
     <script src="js/jquery-3.2.1.min.js"></script>
     <link rel="stylesheet" href="css/bootstrap.min.css">
 </head>
 <body class="container" style="width: 60%">
+<div id="queryConditions">
+    邮箱：<input id="emailParam" name="emailParam" placeholder="请输入邮箱" value="1" />
+</div>
 <div class="form-group"></br>
     <div class="row">
         <div class="col-md-6">
@@ -21,7 +27,6 @@
 </div>
 <div class="form-group">
     <a href="add.html" target="_blank">跳转新增页面</a>
-
 </div>
 <script type="text/javascript">
     // ##---------- 一、全局变量
@@ -82,6 +87,7 @@
     };
     var urlPrefix = 'ws://192.168.21.21:8090/userws/';
     var ws = null;
+    var groupCode="dkh";
     // ##---------- 二、页面加载执行
     $(function () {
         // 先ajax_后台根据分组编码，获取用户信息；并在页面图表中第一次初始化显示此数据；
@@ -103,7 +109,11 @@
      * @Description：先ajax_后台根据分组编码，获取用户信息；并在页面图表中第一次初始化显示此数据；
      */
     function firstInitChartData(){
-        $.get("/user/dkh", function (data) {
+        var sexParam=$("#sexParam").val();
+        var emailParam=$("#emailParam").val();
+        // 根据分组编码、前台页面条件，列表查询用户表
+        var getUrl2="/user/"+groupCode+"/queryByParams?emailParam="+emailParam;
+        $.get(getUrl2, function (data) {
             // 渲染数据
             option.series[0].data[0].name = "女";
             option.series[0].data[0].value = data.girl;
@@ -119,13 +129,14 @@
      * @Description：然后打开长连接实时监听
      */
     function websocketRtc(){
-        var url = urlPrefix + "dkh";
+        var emailWsParam=$("#emailParam").val();
+        var url2 = urlPrefix + groupCode+"?emailWsParam="+emailWsParam;
         // 创建对象
-        ws = new WebSocket(url);
+        ws = new WebSocket(url2);
         // 监听 握手成功/建立连接
         ws.onopen = function () {
             console.log("建立连接...");
-            var messageObj={province:"河北省",city:"石家庄市"};
+            var messageObj={province:"河北省",city:"石家庄市",emailWsParam:emailWsParam};
             var message=JSON.stringify(messageObj);
             // 客户端ws.send发送的消息（或心跳信息）message：可以是字符串、二进制数据
             ws.send(message);

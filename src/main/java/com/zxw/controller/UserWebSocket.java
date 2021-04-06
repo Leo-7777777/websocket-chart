@@ -3,6 +3,7 @@ package com.zxw.controller;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.websocket.*;
 import javax.websocket.server.PathParam;
@@ -13,16 +14,16 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  *
- * @Description: 接收 消息(用户信息)的 websocket服务器端
- * @FR功能需求：
- * @ImportJar:
- * @ApiGrammer规则：
-注解@ServerEndpoint 是一个类层次的注解，它的功能主要是将目前的类定义成一个websocket服务器端。注解的值将被用于监听用户连接的终端访问URL地址。
- * @Remark:
- * @CodeBug解决:
- * @date 2021年3月24日 下午1:36:00
- * @author  ljx
- *
+* @Description: 接收 消息(用户信息)的 websocket服务器端
+* @FR功能需求：
+* @ImportJar:
+* @ApiGrammer规则：
+    注解@ServerEndpoint 是一个类层次的注解，它的功能主要是将目前的类定义成一个websocket服务器端。注解的值将被用于监听用户连接的终端访问URL地址。
+* @Remark:
+* @CodeBug解决:
+* @date 2021年3月24日 下午1:36:00
+* @author  ljx
+*
  */
 @ServerEndpoint("/userws/{groupCode}")
 @Component
@@ -50,6 +51,11 @@ public class UserWebSocket {
     private String message;
 
     /*######################## 一、根据分组编码，接收 消息(用户信息)的 websocket服务器端 ########################*/
+    /**
+     * 当WebSocket客户端与服务器建立连接并完成握手后，前台会回调ws.onopen；后台调用@OnOpen注解的方法。
+     * @param groupCode
+     * @param session
+     */
     @OnOpen
     public void openSession(@PathParam("groupCode") String groupCode, Session session) {
         this.session=session;
