@@ -11,15 +11,15 @@ import java.util.HashMap;
 import java.util.Map;
 /**
  *
- * @Description: 用户信息
- * @FR功能需求：
- * @ImportJar:
- * @ApiGrammer规则：
- * @Remark:
- * @CodeBug解决:
- * @date 2021年3月24日 下午1:56:57
- * @author  ljx
- *
+* @Description: 用户信息
+* @FR功能需求：
+* @ImportJar:
+* @ApiGrammer规则：
+* @Remark:
+* @CodeBug解决:
+* @date 2021年3月24日 下午1:56:57
+* @author  ljx
+*
  */
 @RestController
 @RequestMapping("/user")
