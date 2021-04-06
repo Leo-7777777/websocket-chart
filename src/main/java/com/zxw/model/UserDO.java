@@ -5,7 +5,11 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-
+/**
+ * Description: 实例类对象——用户表userdo
+ * @auther: ljx
+ * Date: 2021/4/6 0006 下午 2:51
+  */
 @Entity
 public class UserDO {
     @Id
@@ -71,5 +75,19 @@ public class UserDO {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    /**
+     * 右键》Source》Generate toString()... 目的是为了属性能打印出来
+     */
+    @Override
+    public String toString() {
+        return "UserDO{" +
+                "id=" + id +
+                ", groupCode='" + groupCode + '\'' +
+                ", userName='" + userName + '\'' +
+                ", sex=" + sex +
+                ", email='" + email + '\'' +
+                '}';
     }
 }
