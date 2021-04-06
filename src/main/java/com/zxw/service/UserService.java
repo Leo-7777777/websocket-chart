@@ -1,7 +1,7 @@
 package com.zxw.service;
 
-import com.zxw.dto.UserChartDTO;
-import com.zxw.model.UserDO;
+import com.zxw.pojo.dto.UserChartDTO;
+import com.zxw.pojo.doo.UserDO;
 
 import java.util.List;
 import java.util.Map;

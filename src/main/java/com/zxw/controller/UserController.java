@@ -1,8 +1,8 @@
 package com.zxw.controller;
 
 import com.ljx.wcneln._09util.MapGetter;
-import com.zxw.dto.UserChartDTO;
-import com.zxw.model.UserDO;
+import com.zxw.pojo.dto.UserChartDTO;
+import com.zxw.pojo.doo.UserDO;
 import com.zxw.service.UserService;
 import com.alibaba.fastjson.JSON;
 import org.springframework.web.bind.annotation.*;

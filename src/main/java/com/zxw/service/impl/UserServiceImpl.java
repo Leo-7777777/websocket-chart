@@ -1,7 +1,7 @@
 package com.zxw.service.impl;
 
-import com.zxw.dto.UserChartDTO;
-import com.zxw.model.UserDO;
+import com.zxw.pojo.dto.UserChartDTO;
+import com.zxw.pojo.doo.UserDO;
 import com.zxw.repository.UserRepository;
 import com.zxw.service.UserService;
 import org.springframework.stereotype.Service;
