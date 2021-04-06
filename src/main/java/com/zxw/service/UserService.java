@@ -5,7 +5,20 @@ import com.zxw.model.UserDO;
 
 import java.util.List;
 import java.util.Map;
-
+/**
+ *
+* @Description:
+* @FR功能需求：
+* @ImportJar:
+* @ApiGrammer规则：
+* @Remark:
+* @AlibabaCodeStatuteScanError：
+* @CodeBug解决:
+* @Debug调试：
+* @date
+* @author  ljx
+*
+ */
 public interface UserService {
     /**
      * 列表查询用户表

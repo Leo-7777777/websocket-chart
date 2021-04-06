@@ -11,12 +11,20 @@ import java.beans.Transient;
 import java.math.BigInteger;
 import java.util.List;
 import java.util.Map;
-
 /**
- * @Description: 用户信息实现
- * @Author Zhouxw
- * @Date 2020/9/18 0018 15:20
- **/
+ *
+* @Description: 用户信息实现
+* @FR功能需求：
+* @ImportJar:
+* @ApiGrammer规则：
+* @Remark:
+* @AlibabaCodeStatuteScanError：
+* @CodeBug解决:
+* @Debug调试：
+* @date ${DATE} ${TIME}
+* @author  ljx
+*
+ */
 @Service
 public class UserServiceImpl implements UserService {
     @Resource

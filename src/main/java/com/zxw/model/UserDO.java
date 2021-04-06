@@ -6,10 +6,19 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 /**
- * Description: 实例类对象——用户表userdo
- * @auther: ljx
- * Date: 2021/4/6 0006 下午 2:51
-  */
+ *
+* @Description: 实例类对象——用户表userdo
+* @FR功能需求：
+* @ImportJar:
+* @ApiGrammer规则：
+* @Remark:
+* @AlibabaCodeStatuteScanError：
+* @CodeBug解决:
+* @Debug调试：
+* @date
+* @author  ljx
+*
+ */
 @Entity
 public class UserDO {
     @Id

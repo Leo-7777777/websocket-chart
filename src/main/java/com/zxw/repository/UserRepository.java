@@ -8,8 +8,20 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Map;
-
-
+/**
+ *
+* @Description:
+* @FR功能需求：
+* @ImportJar:
+* @ApiGrammer规则：
+* @Remark:
+* @AlibabaCodeStatuteScanError：
+* @CodeBug解决:
+* @Debug调试：
+* @date
+* @author  ljx
+*
+ */
 @Repository
 public interface UserRepository extends JpaRepository<UserDO, Long> {
     /**

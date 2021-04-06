@@ -2,16 +2,22 @@ package com.zxw.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 /**
- * Title: IndexController
- * Description: 首页
- * @Remark：
-        http://localhost:8090
-        SpringBoot项目在启动后，首先会去静态资源路径（resources/static）下查找 index.html 作为首页文件。
-        如果在静态资源路径（resources/static）下找不到 index.html，则会到（resources/templates）目录下找 index.html（使用 Thymeleaf 模版）作为首页文件。
- * Author: ljx
- * Date: 2021/3/26 0026 上午 10:44
+ *
+* @Description: 首页
+* @FR功能需求：
+* @ImportJar:
+* @ApiGrammer规则：
+* @Remark:
+    http://localhost:8090
+    SpringBoot项目在启动后，首先会去静态资源路径（resources/static）下查找 index.html 作为首页文件。
+    如果在静态资源路径（resources/static）下找不到 index.html，则会到（resources/templates）目录下找 index.html（使用 Thymeleaf 模版）作为首页文件。
+* @AlibabaCodeStatuteScanError：
+* @CodeBug解决:
+* @Debug调试：
+* @date
+* @author  ljx
+*
  */
 @Controller
 @RequestMapping("/index")

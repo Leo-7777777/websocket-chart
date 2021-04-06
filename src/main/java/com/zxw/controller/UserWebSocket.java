@@ -16,16 +16,16 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  *
- * @Description: 接收 消息(用户信息)的 websocket服务器端
- * @FR功能需求：
- * @ImportJar:
- * @ApiGrammer规则：
-注解@ServerEndpoint 是一个类层次的注解，它的功能主要是将目前的类定义成一个websocket服务器端。注解的值将被用于监听用户连接的终端访问URL地址。
- * @Remark:
- * @CodeBug解决:
- * @date 2021年3月24日 下午1:36:00
- * @author  ljx
- *
+* @Description: 接收 消息(用户信息)的 websocket服务器端
+* @FR功能需求：
+* @ImportJar:
+* @ApiGrammer规则：
+    注解@ServerEndpoint 是一个类层次的注解，它的功能主要是将目前的类定义成一个websocket服务器端。注解的值将被用于监听用户连接的终端访问URL地址。
+* @Remark:
+* @CodeBug解决:
+* @date 2021年3月24日 下午1:36:00
+* @author  ljx
+*
  */
 @ServerEndpoint("/userws/{groupCode}")
 @Component
@@ -36,6 +36,11 @@ public class UserWebSocket {
      */
     public static final Map<String, List<Session>> ONLINE_USER_SESSIONS = new ConcurrentHashMap<>();
     /*######################## 一、根据分组编码，接收 消息(用户信息)的 websocket服务器端 ########################*/
+    /**
+     *
+     * @param groupCode
+     * @param session
+     */
     @OnOpen
     public void openSession(@PathParam("groupCode") String groupCode,Session session) {
         // ##-------- 获取请求路径中携带的信息
