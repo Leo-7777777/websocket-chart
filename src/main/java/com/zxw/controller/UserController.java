@@ -107,7 +107,7 @@ public class UserController {
     }
     /*######################## 一、根据分组编码，接收 消息(用户信息)的 websocket服务器端 ########################*/
     /**
-     * 当WebSocket客户端与服务器建立连接并完成握手后，前台会回调ws.onopen；后台调用@OnOpen注解的函数。
+     * 当WebSocket客户端与服务器建立连接并完成握手后，前台会回调ws.onopen；后台调用@OnOpen注解的方法。
      * @param groupCode
      * @param session
      */
