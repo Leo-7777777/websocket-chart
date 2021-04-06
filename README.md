@@ -16,9 +16,11 @@
 * spring.datasource.url=修改数据库信息，ip、数据库名；
 * server.port=IDEA启动项目/浏览器访问项目地址中的端口号8090
 ##2、启动
-&emsp;springboot主配置文件ChartApplication.java》点击按钮Debug
+&emsp;SpringBoot项目的主配置文件ChartApplication.java》点击按钮Debug
 ##3、启动后浏览器默认访问地址
 &emsp;http://localhost:8090
+<br/>&emsp;SpringBoot项目在启动后，首先会去静态资源路径（resources/static）下查找 index.html 作为首页文件。
+<br/>&emsp;如果在静态资源路径（resources/static）下找不到 index.html，则会到（resources/templates）目录下找 index.html（使用 Thymeleaf 模版）作为首页文件。
 #三、项目部署linux服务器
 ##1、项目打包
 ##2、linux服务器地址
@@ -30,6 +32,6 @@
 ##4、部署注意：
 	（1）ps -ef | grep websocket-chart.jar查出进程号，kill -9 进程号；
 	（2）替换jar；
-	（3） ./startup.sh 启动
-##4、启动后浏览器默认访问地址
+	（3）./startup.sh 启动
+##5、启动后浏览器默认访问地址
 &emsp;http://192.168.21.120:8089/websocket-chart

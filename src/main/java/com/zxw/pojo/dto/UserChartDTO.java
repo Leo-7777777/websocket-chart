@@ -1,4 +1,4 @@
-package com.zxw.dto;
+package com.zxw.pojo.dto;
 
 /**
  * @Description: 图表结果DTO
@@ -41,5 +41,17 @@ public class UserChartDTO {
 
     public void setUnknown(Long unknown) {
         this.unknown = unknown;
+    }
+
+    /**
+     * 右键》Source》Generate toString()... 目的是为了属性能打印出来
+     */
+    @Override
+    public String toString() {
+        return "UserChartDTO{" +
+                "boy=" + boy +
+                ", girl=" + girl +
+                ", unknown=" + unknown +
+                '}';
     }
 }
