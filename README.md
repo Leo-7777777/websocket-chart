@@ -1,5 +1,5 @@
 # websocket-chart
-使用websocket实现图表实时显示
+Controller层中使用websocket注解，实现图表新增数据实时显示
 
 #一、svn地址
 &emsp;https://
