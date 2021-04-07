@@ -2,6 +2,7 @@ package com.zxw.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+
 /**
  *
 * @Description: 首页
@@ -28,11 +29,11 @@ public class IndexController {
      * @return: jspStr
       */
     @RequestMapping("/toQueryByGroupCodeIndex")
-    public String  toQueryByGroupCodeIndexJspFun1(){
-        String jspStr="templates/general_jsp/queryByGroupCode/index";
+    public String  toQueryByGroupCodeIndexFun1(){
+        String jspStr="general_jsp/queryByGroupCode/index";
         return jspStr;
     }
-    public String  toQueryByGroupCodeIndexJspFun2(){
+    public String  toQueryByGroupCodeIndexFun2(){
         String jspStr="forward:templates/general_jsp/queryByGroupCode/index.html";
         return jspStr;
     }
@@ -42,7 +43,7 @@ public class IndexController {
      * @return: jspStr
       */
     @RequestMapping("/toQueryByGroupCodeAndParamsIndex")
-    public String  toQueryByGroupCodeAndParamsIndex1(){
+    public String  toQueryByGroupCodeAndParamsIndexFun1(){
         String jspStr="templates/general_jsp/queryByGroupCodeAndParams/index";
         return jspStr;
     }
