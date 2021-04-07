@@ -97,7 +97,7 @@ th:inline="javascript"这是Thymeleaf中的内联写法，支持在javascript访
             }
         ]
     };
-    var urlPrefix = 'ws://192.168.21.21:8090/websocket-chart/userws/';
+    var urlPrefix = 'ws://192.168.21.21:8090'+ctx+'userws/';
     var ws = null;
     var groupCode=null;
     // ##---------- 二、页面加载执行
@@ -123,7 +123,7 @@ th:inline="javascript"这是Thymeleaf中的内联写法，支持在javascript访
      */
     function firstInitChartData(){
         // 根据分组编码，列表查询用户表
-        var getUrl1="/websocket-chart/user/"+groupCode+"/queryByGroupCode";
+        var getUrl1=ctx+"user/"+groupCode+"/queryByGroupCode";
         $.get(getUrl1, function (data) {
             // 拿到数据
             var jsonObject =data;
