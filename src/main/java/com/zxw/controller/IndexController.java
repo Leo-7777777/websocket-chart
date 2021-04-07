@@ -38,6 +38,15 @@ public class IndexController {
         return jspStr;
     }
     /**
+     * webUrl测试http://localhost:8090/websocket-chart/index/toByGroupCodeAdd
+     * @return
+     */
+    @RequestMapping("/toByGroupCodeAdd")
+    public String  toByGroupCodeAdd(){
+        String jspStr="general_jsp/queryByGroupCode/add";
+        return jspStr;
+    }
+    /**
      * webUrl测试http://localhost:8090/websocket-chart/index/toQueryByGroupCodeAndParamsIndex
      * Description: 跳转多条件图表页面
      * @return: jspStr
@@ -45,6 +54,15 @@ public class IndexController {
     @RequestMapping("/toQueryByGroupCodeAndParamsIndex")
     public String  toQueryByGroupCodeAndParamsIndexFun1(){
         String jspStr="general_jsp/queryByGroupCodeAndParams/index";
+        return jspStr;
+    }
+    /**
+     * webUrl测试http://localhost:8090/websocket-chart/index/toByGroupAndParamsCodeAdd
+     * @return
+     */
+    @RequestMapping("/toByGroupAndParamsCodeAdd")
+    public String  toByGroupCodeAndParamsAdd(){
+        String jspStr="general_jsp/queryByGroupCodeAndParams/add";
         return jspStr;
     }
 }

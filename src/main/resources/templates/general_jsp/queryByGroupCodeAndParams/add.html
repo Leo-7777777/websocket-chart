@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+<!-- 头部加入thymeleaf命名空间 th标签引入 -->
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>人员增加</title>
-    <script src="js/jquery-3.2.1.min.js"></script>
-    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
 </head>
 <body class="container" style="width: 60%">
 <div class="form-group"></br>
@@ -40,7 +41,17 @@
     <button id="save" class="btn btn-success">保存</button>
     <button id="clear" class="btn btn-danger">重置</button>
 </div>
-
+<script th:src="@{/js/jquery-3.2.1.min.js}"></script>
+<!--
+th:inline="javascript"这是Thymeleaf中的内联写法，支持在javascript访问model中的数据。
+其中的第1、4行 为基于XML的转义写法；第2行把内联访问的语句用注释引起来，且后面跟着一个空格"/websocket-chart/"，是指若不存在此对象，则自动设置默认值为"/websocket-chart/"。
+-->
+<script type="text/javascript" th:inline="javascript">
+    /*<![CDATA[*/
+    var ctx = /*[[@{/}]]*/ "/websocket-chart/";
+    console.log(ctx);
+    /*]]>*/
+</script>
 <script type="text/javascript">
     $(function () {
         //刷新页面
@@ -60,7 +71,7 @@
                 alert("组名不能为空");
                 return;
             }
-            $.post('/user/addAndQueryByParams', {groupCode: groupCode,userName: userName, sex: sex,  email: email}, function (data) {
+            $.post(ctx+'user/addAndQueryByParams', {groupCode: groupCode,userName: userName, sex: sex,  email: email}, function (data) {
                 console.log(data);
                 alert('新增成功！观察统计图实时变化');
             });
