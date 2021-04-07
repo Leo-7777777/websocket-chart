@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+<!-- 头部加入thymeleaf命名空间 th标签引入 -->
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>图表（根据分组编码，列表查询用户表）</title>
 <!--
 http://localhost:8090/websocket-chart/index/toQueryByGroupCodeIndex
 -->
-    <script src="static/js/echarts.min.js"></script>
+    <script th:src="@{static/js/echarts.min.js}"></script>
     <script src="js/jquery-3.2.1.min.js"></script>
     <link rel="stylesheet" href="css/bootstrap.min.css">
 </head>
