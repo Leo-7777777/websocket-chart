@@ -1,5 +1,5 @@
 # websocket-chart
-Controller层、websocket注解类，实现图表新增数据实时显示
+前台新增页面调用新增接口，新增数据；后台Controller层、websocket注解类，实现图表新增数据实时显示
 
 #一、svn地址
 &emsp;https://
