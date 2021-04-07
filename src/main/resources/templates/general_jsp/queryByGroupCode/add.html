@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+<!-- 头部加入thymeleaf命名空间 th标签引入 -->
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>人员增加</title>
     <script src="js/jquery-3.2.1.min.js"></script>
-    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
 </head>
 <body class="container" style="width: 60%">
 <div class="form-group"></br>
