@@ -34,7 +34,7 @@ public class IndexController {
         return jspStr;
     }
     public String  toQueryByGroupCodeIndexFun2(){
-        String jspStr="forward:templates/general_jsp/queryByGroupCode/index.html";
+        String jspStr="forward:general_jsp/queryByGroupCode/index.html";
         return jspStr;
     }
     /**
@@ -44,7 +44,7 @@ public class IndexController {
       */
     @RequestMapping("/toQueryByGroupCodeAndParamsIndex")
     public String  toQueryByGroupCodeAndParamsIndexFun1(){
-        String jspStr="templates/general_jsp/queryByGroupCodeAndParams/index";
+        String jspStr="general_jsp/queryByGroupCodeAndParams/index";
         return jspStr;
     }
 }
