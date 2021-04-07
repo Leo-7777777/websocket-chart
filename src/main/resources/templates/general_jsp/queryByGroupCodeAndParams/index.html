@@ -28,8 +28,18 @@ http://localhost:8090/websocket-chart/index/toQueryByGroupCodeAndParamsIndex
 <div class="form-group">
     <a th:href="@{/index/toByGroupAndParamsCodeAdd}" target="_blank">跳转新增页面</a>
 </div>
-<script th:src="@{/js/echarts.min.js}"></script>
 <script th:src="@{/js/jquery-3.2.1.min.js}"></script>
+<script th:src="@{/js/echarts.min.js}"></script>
+<!--
+th:inline="javascript"这是Thymeleaf中的内联写法，支持在javascript访问model中的数据。
+其中的第1、4行 为基于XML的转义写法；第2行把内联访问的语句用注释引起来，且后面跟着一个空格"/websocket-chart/"，是指若不存在此对象，则自动设置默认值为"/websocket-chart/"。
+-->
+<script type="text/javascript" th:inline="javascript">
+    /*<![CDATA[*/
+    var ctx = /*[[@{/}]]*/ "/websocket-chart/";
+    console.log(ctx);
+    /*]]>*/
+</script>
 <script type="text/javascript">
     // ##---------- 一、全局变量
     // 基于准备好的dom，初始化echarts实例
