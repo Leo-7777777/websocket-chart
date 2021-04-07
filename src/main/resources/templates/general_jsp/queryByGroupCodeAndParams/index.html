@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+<!-- 头部加入thymeleaf命名空间 th标签引入 -->
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>图表（根据分组编码、前台页面条件，列表查询用户表）</title>
 <!--
 http://localhost:8090/websocket-chart/index/toQueryByGroupCodeAndParamsIndex
 -->
-    <script src="js/echarts.min.js"></script>
-    <script src="js/jquery-3.2.1.min.js"></script>
-    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
 </head>
 <body class="container" style="width: 60%">
 <div id="queryConditions">
@@ -28,6 +28,8 @@ http://localhost:8090/websocket-chart/index/toQueryByGroupCodeAndParamsIndex
 <div class="form-group">
     <a href="add.html" target="_blank">跳转新增页面</a>
 </div>
+<script th:src="@{/js/echarts.min.js}"></script>
+<script th:src="@{/js/jquery-3.2.1.min.js}"></script>
 <script type="text/javascript">
     // ##---------- 一、全局变量
     // 基于准备好的dom，初始化echarts实例
@@ -85,7 +87,7 @@ http://localhost:8090/websocket-chart/index/toQueryByGroupCodeAndParamsIndex
             }
         ]
     };
-    var urlPrefix = 'ws://192.168.21.21:8090/userws/';
+    var urlPrefix = 'ws://192.168.21.21:8090/websocket-chart/userws/';
     var ws = null;
     var groupCode="dkh";
     // ##---------- 二、页面加载执行
@@ -112,7 +114,7 @@ http://localhost:8090/websocket-chart/index/toQueryByGroupCodeAndParamsIndex
         var sexParam=$("#sexParam").val();
         var emailParam=$("#emailParam").val();
         // 根据分组编码、前台页面条件，列表查询用户表
-        var getUrl2="/user/"+groupCode+"/queryByParams?emailParam="+emailParam;
+        var getUrl2="/websocket-chart/user/"+groupCode+"/queryByParams?emailParam="+emailParam;
         $.get(getUrl2, function (data) {
             // 拿到数据
             var jsonObject =data;

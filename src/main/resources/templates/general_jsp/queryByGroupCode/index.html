@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+<!-- 头部加入thymeleaf命名空间 th标签引入 -->
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>图表（根据分组编码，列表查询用户表）</title>
 <!--
 http://localhost:8090/websocket-chart/index/toQueryByGroupCodeIndex
 -->
-    <script src="js/echarts.min.js"></script>
-    <script src="js/jquery-3.2.1.min.js"></script>
-    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
 </head>
 <body class="container" style="width: 60%">
 <div id="queryConditions">
@@ -28,6 +28,8 @@ http://localhost:8090/websocket-chart/index/toQueryByGroupCodeIndex
 <div class="form-group">
     <a href="add.html" target="_blank">跳转新增页面</a>
 </div>
+<script th:src="@{/js/echarts.min.js}"></script>
+<script th:src="@{/js/jquery-3.2.1.min.js}"></script>
 <script type="text/javascript">
     // ##---------- 一、全局变量
     // 基于准备好的dom，初始化echarts实例
@@ -85,7 +87,7 @@ http://localhost:8090/websocket-chart/index/toQueryByGroupCodeIndex
             }
         ]
     };
-    var urlPrefix = 'ws://192.168.21.21:8090/userws/';
+    var urlPrefix = 'ws://192.168.21.21:8090/websocket-chart/userws/';
     var ws = null;
     var groupCode=null;
     // ##---------- 二、页面加载执行
@@ -111,7 +113,7 @@ http://localhost:8090/websocket-chart/index/toQueryByGroupCodeIndex
      */
     function firstInitChartData(){
         // 根据分组编码，列表查询用户表
-        var getUrl1="/user/"+groupCode+"/queryByGroupCode";
+        var getUrl1="/websocket-chart/user/"+groupCode+"/queryByGroupCode";
         $.get(getUrl1, function (data) {
             // 拿到数据
             var jsonObject =data;
@@ -129,7 +131,7 @@ http://localhost:8090/websocket-chart/index/toQueryByGroupCodeIndex
         // 监听 握手成功/建立连接
         ws.onopen = function () {
             console.log("建立连接...");
-            var messageObj={province:"河北省",city:"石家庄市",emailWsParam:emailWsParam};
+            var messageObj={province:"河北省",city:"石家庄市",emailWsParam:1};
             var message=JSON.stringify(messageObj);
             // 客户端ws.send发送的消息（或心跳信息）message：可以是字符串、二进制数据
             ws.send(message);
