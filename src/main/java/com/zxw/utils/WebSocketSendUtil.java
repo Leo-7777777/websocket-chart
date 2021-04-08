@@ -24,7 +24,7 @@ import java.util.concurrent.ConcurrentHashMap;
 public class WebSocketSendUtil {
     private static final Logger logger = LoggerFactory.getLogger(WebSocketSendUtil.class);
     /**
-     * 存储 websocket session等，以记录每个用户下多个终端（PC、pad、phone）的连接
+     * 存储 websocket session等，以记录每个用户下多个终端【PC（不同浏览器登陆，产生的sessionid不同）、pad、phone】的连接
      */
     public static final Map<String, List<Session>> ONLINE_USER_SESSIONS = new ConcurrentHashMap<>();
     /*######################## 二、根据分组编码，发送 消息(用户信息)的 websocket服务器端 工具方法########################*/
