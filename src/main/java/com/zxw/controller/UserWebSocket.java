@@ -32,7 +32,7 @@ import java.util.concurrent.ConcurrentHashMap;
 public class UserWebSocket {
     private static final Logger logger = LoggerFactory.getLogger(UserWebSocket.class);
     /**
-     * @Description 存储 websocket session
+     * 存储 websocket session，以记录每个用户下多个终端的连接
      */
     public static final Map<String, List<Session>> ONLINE_USER_SESSIONS = new ConcurrentHashMap<>();
     /*######################## 一、根据分组编码，接收 消息(用户信息)的 websocket服务器端 ########################*/
