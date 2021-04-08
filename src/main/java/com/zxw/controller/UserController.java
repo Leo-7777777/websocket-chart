@@ -114,10 +114,11 @@ public class UserController {
     @OnOpen
     public void openSession(@PathParam("groupCode") String groupCode, Session session) {
         List<Session> list = WebSocketSendUtil.ONLINE_USER_SESSIONS.get(groupCode);
+        // 如果该用户当前是第一次连接/没有在别的终端登录
         if (null == list) {
             list = new ArrayList<>();
         }
-
+        // 如果该用户当前不是第一次连接/已经在别的终端登录
         if (!list.contains(session)) {
             list.add(session);
         }
@@ -131,8 +132,8 @@ public class UserController {
 
     @OnClose
     public void onClose(@PathParam("groupCode") String groupCode, Session session) {
-        //当前的Session 移除
         List<Session> list = WebSocketSendUtil.ONLINE_USER_SESSIONS.get(groupCode);
+        // 移除该用户的websocket session记录
         list.remove(session);
         try {
             session.close();

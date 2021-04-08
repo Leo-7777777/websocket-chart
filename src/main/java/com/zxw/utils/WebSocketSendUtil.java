@@ -24,7 +24,7 @@ import java.util.concurrent.ConcurrentHashMap;
 public class WebSocketSendUtil {
     private static final Logger logger = LoggerFactory.getLogger(WebSocketSendUtil.class);
     /**
-     * 存储 websocket session，以记录每个用户下多个终端的连接
+     * 存储 websocket session等，以记录每个用户下多个终端（PC、pad、phone）的连接
      */
     public static final Map<String, List<Session>> ONLINE_USER_SESSIONS = new ConcurrentHashMap<>();
     /*######################## 二、根据分组编码，发送 消息(用户信息)的 websocket服务器端 工具方法########################*/
@@ -50,8 +50,8 @@ public class WebSocketSendUtil {
         }
     }
     /**
-     * Title: sendMessage
-     * Description: 根据分组编码，向客户端发送 消息(用户信息)
+     * Description: 这个根据业务情况详细设计
+     * @CodeSteps： 根据分组编码，向客户端发送 消息(用户信息)
      * @Param key:
      * @Param message:
      * @return: void
@@ -60,6 +60,7 @@ public class WebSocketSendUtil {
       */
     public static void sendMessage(String key, String message) {
         List<Session> list = ONLINE_USER_SESSIONS.get(key);
+        // 给用户的所有终端发送数据消息
         list.stream().forEach(se -> {
             if(se.isOpen()){
                 sendMessage(se, message);
