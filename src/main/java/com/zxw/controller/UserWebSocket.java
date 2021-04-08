@@ -34,7 +34,7 @@ public class UserWebSocket {
      */
     private static int onlineCount = 0;
     /**
-     * 记录每个用户下多个终端的连接
+     * 存储 websocket session等，以记录每个用户下多个终端的连接
      */
     private static Map<String, Set<UserWebSocket>> userWebSocketMap = new ConcurrentHashMap<>();
     /**
@@ -73,7 +73,7 @@ public class UserWebSocket {
             userWebSocketMap.put(this.groupCode, addUserSet);
         }
         logger.debug("用户{}登录的终端个数是为{}",groupCode,userWebSocketMap.get(this.groupCode).size());
-        logger.debug("当前在线用户数为：{},所有终端个数为：{}",userWebSocketMap.size(),onlineCount);
+        logger.debug("当前所有在线用户数为：{},所有终端个数为：{}",userWebSocketMap.size(),onlineCount);
     }
 
     @OnMessage
@@ -91,7 +91,7 @@ public class UserWebSocket {
             userWebSocketMap.get(this.groupCode).remove(this);
         }
         logger.debug("用户{}登录的终端个数是为{}",this.groupCode,userWebSocketMap.get(this.groupCode).size());
-        logger.debug("当前在线用户数为：{},所有终端个数为：{}",userWebSocketMap.size(),onlineCount);
+        logger.debug("当前所有在线用户数为：{},所有终端个数为：{}",userWebSocketMap.size(),onlineCount);
     }
 
     @OnError
