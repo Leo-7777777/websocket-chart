@@ -34,7 +34,7 @@ public class UserWebSocket {
      */
     private static int onlineCount = 0;
     /**
-     * 存储 websocket session等，以记录每个用户下多个终端（PC、pad、phone）的连接
+     * 存储 websocket session等，以记录每个用户下多个终端【PC（不同浏览器登陆，产生的sessionid不同）、pad、phone】的连接
      */
     private static Map<String, Set<UserWebSocket>> userWebSocketMap = new ConcurrentHashMap<>();
     /**
