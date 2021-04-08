@@ -64,7 +64,7 @@ public class UserWebSocket {
         this.session=session;
         this.groupCode=groupCode;
         onlineCount++;
-        // 如果是第一次连接/没有在别的终端登录
+        // 如果该用户当前是第一次连接/没有在别的终端登录
         if (!userWebSocketMap.containsKey(this.groupCode)) {
             logger.debug("当前用户 groupCode:{}第一个终端登录",this.groupCode);
             Set<UserWebSocket> addUserSet = new HashSet<>();
@@ -72,7 +72,7 @@ public class UserWebSocket {
             // 对Map增加一个groupCode
             userWebSocketMap.put(this.groupCode, addUserSet);
         }
-        // 如果不是第一次连接/已经在别的终端登录
+        // 如果该用户当前不是第一次连接/已经在别的终端登录
         else {
             logger.debug("当前用户 groupCode:{}已有其他终端登录",this.groupCode);
             // 将新的连接实例sessionid，添加入已有的用户Set中
@@ -99,10 +99,10 @@ public class UserWebSocket {
     public void onClose(@PathParam("groupCode") String groupCode, Session session) {
         // 如果该用户当前没有连接了/没有在别的终端登录了/所有终端都下线了
         if (userWebSocketMap.get(this.groupCode).size() == 0) {
-            // 移除Map中该用户的记录
+            // 移除Map中该用户的websocket session等记录
             userWebSocketMap.remove(this.groupCode);
         }else{
-            // 移除该用户Set中的记录
+            // 移除该用户Set中的websocket session等记录
             userWebSocketMap.get(this.groupCode).remove(this);
         }
         logger.debug("用户{}登录的终端个数是为{}",this.groupCode,userWebSocketMap.get(this.groupCode).size());
@@ -154,7 +154,7 @@ public class UserWebSocket {
         if (userWebSocketMap.containsKey(groupCode)) {
             logger.debug(" 给用户 groupCode为：{}的所有终端发送消息：{}",groupCode,message);
             Set<UserWebSocket> userWsSet=userWebSocketMap.get(groupCode);
-            // 给用户的所有终端发送数据：遍历该用户的Set中的连接即可
+            // 给用户的所有终端发送数据消息：遍历该用户的Set中的连接即可
             for (UserWebSocket userWs : userWsSet) {
                 logger.debug("sessionId为:{}",userWs.session.getId());
                 try {
