@@ -30,8 +30,8 @@
     </label>
 </div>
 <div class="form-group">
-    <label for="groupCode">组名<span style="color: red">*</span>&nbsp;</label>
-    <input id="groupCode" value="dkh" readonly="readonly" class="form-control" required placeholder="默认dkh"/></br>
+    <label for="userId">组名<span style="color: red">*</span>&nbsp;</label>
+    <input id="userId" value="dkh" readonly="readonly" class="form-control" required placeholder="默认dkh"/></br>
 </div>
 <div class="form-group">
     <label for="email">邮箱&nbsp;</label>
@@ -61,17 +61,17 @@ th:inline="javascript"这是Thymeleaf中的内联写法，支持在javascript访
         $('#save').click(function () {
             var userName = $('#userName').val();
             var sex = $("input[name='sex']:checked").val();
-            var groupCode = $('#groupCode').val();
+            var userId = $('#userId').val();
             var email = $('#email').val();
             if ('' == userName) {
                 alert("姓名不能为空");
                 return;
             }
-            if ('' == groupCode) {
+            if ('' == userId) {
                 alert("组名不能为空");
                 return;
             }
-            $.post(ctx+'user/addAndQueryByParams', {groupCode: groupCode,userName: userName, sex: sex,  email: email}, function (data) {
+            $.post(ctx+'user/addAndQueryByParams', {userId: userId,userName: userName, sex: sex,  email: email}, function (data) {
                 console.log(data);
                 alert('新增成功！观察统计图实时变化');
             });

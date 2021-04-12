@@ -25,7 +25,7 @@ import java.util.concurrent.ConcurrentHashMap;
 * @author  ljx
 *
  */
-@ServerEndpoint("/userws/{groupCode}")
+@ServerEndpoint("/userws/{userId}")
 @Component
 public class UserWebSocket {
     private static final Logger logger = LoggerFactory.getLogger(UserWebSocket.class);
@@ -38,9 +38,9 @@ public class UserWebSocket {
      */
     private static Map<String, Set<UserWebSocket>> userWebSocketMap = new ConcurrentHashMap<>();
     /**
-     * 连接特征groupCode
+     * 连接特征userId
      */
-    private String groupCode;
+    private String userId;
     /**
      * 存储 websocket session；
      */
@@ -50,62 +50,62 @@ public class UserWebSocket {
      */
     private String message;
 
-    /*######################## 一、根据分组编码，接收 消息(用户信息)的 websocket服务器端 ########################*/
+    /*######################## 一、根据用户id，接收 消息(用户信息)的 websocket服务器端 ########################*/
     /**
      * 当WebSocket客户端与服务器建立连接并完成握手后，前台会回调ws.onopen；后台调用@OnOpen注解的方法。
      * @CodeSteps： 新建连接时需要判断是该用户当前是否第一次连接/是否已经在别的终端登录；
-                    如果该用户当前是第一次连接/没有在别的终端登录，则对Map增加一个groupCode；
+                    如果该用户当前是第一次连接/没有在别的终端登录，则对Map增加一个userId；
                     如果该用户当前不是第一次连接/已经在别的终端登录，将新的连接实例sessionid，添加入已有的用户Set中。
-     * @param groupCode
+     * @param userId
      * @param session
      */
     @OnOpen
-    public void openSession(@PathParam("groupCode") String groupCode, Session session) {
+    public void openSession(@PathParam("userId") String userId, Session session) {
         this.session=session;
-        this.groupCode=groupCode;
+        this.userId=userId;
         onlineCount++;
         // 如果该用户当前是第一次连接/没有在别的终端登录
-        if (!userWebSocketMap.containsKey(this.groupCode)) {
-            logger.debug("当前用户 groupCode:{}第一个终端登录",this.groupCode);
+        if (!userWebSocketMap.containsKey(this.userId)) {
+            logger.debug("当前用户 userId:{}第一个终端登录",this.userId);
             Set<UserWebSocket> addUserSet = new HashSet<>();
             addUserSet.add(this);
-            // 对Map增加一个groupCode
-            userWebSocketMap.put(this.groupCode, addUserSet);
+            // 对Map增加一个userId
+            userWebSocketMap.put(this.userId, addUserSet);
         }
         // 如果该用户当前不是第一次连接/已经在别的终端登录
         else {
-            logger.debug("当前用户 groupCode:{}已有其他终端登录",this.groupCode);
+            logger.debug("当前用户 userId:{}已有其他终端登录",this.userId);
             // 将新的连接实例sessionid，添加入已有的用户Set中
-            userWebSocketMap.get(this.groupCode).add(this);
+            userWebSocketMap.get(this.userId).add(this);
         }
-        logger.debug("用户{}登录的终端个数是为{}",groupCode,userWebSocketMap.get(this.groupCode).size());
+        logger.debug("用户{}登录的终端个数是为{}",userId,userWebSocketMap.get(this.userId).size());
         logger.debug("当前所有在线用户数为：{},所有终端个数为：{}",userWebSocketMap.size(),onlineCount);
     }
 
     @OnMessage
-    public void onMessage(@PathParam("groupCode") String groupCode, String message) {
-        System.out.println(groupCode + "客户端ws.send发送的消息（或心跳信息）：" + message);
+    public void onMessage(@PathParam("userId") String userId, String message) {
+        System.out.println(userId + "客户端ws.send发送的消息（或心跳信息）：" + message);
         this.message=message;
     }
     /**
      * Description:
      * @CodeSteps： 连接关闭时，如果该用户当前没有连接了/没有在别的终端登录了/所有终端都下线了，移除Map中该用户的记录；
                     其他情况，移除该用户Set中的记录。
-     * @Param groupCode:
+     * @Param userId:
      * @Param session:
      * @return:
       */
     @OnClose
-    public void onClose(@PathParam("groupCode") String groupCode, Session session) {
+    public void onClose(@PathParam("userId") String userId, Session session) {
         // 如果该用户当前没有连接了/没有在别的终端登录了/所有终端都下线了
-        if (userWebSocketMap.get(this.groupCode).size() == 0) {
+        if (userWebSocketMap.get(this.userId).size() == 0) {
             // 移除Map中该用户的websocket session等记录
-            userWebSocketMap.remove(this.groupCode);
+            userWebSocketMap.remove(this.userId);
         }else{
             // 移除该用户Set中的websocket session等记录
-            userWebSocketMap.get(this.groupCode).remove(this);
+            userWebSocketMap.get(this.userId).remove(this);
         }
-        logger.debug("用户{}登录的终端个数是为{}",this.groupCode,userWebSocketMap.get(this.groupCode).size());
+        logger.debug("用户{}登录的终端个数是为{}",this.userId,userWebSocketMap.get(this.userId).size());
         logger.debug("当前所有在线用户数为：{},所有终端个数为：{}",userWebSocketMap.size(),onlineCount);
     }
 
@@ -119,7 +119,7 @@ public class UserWebSocket {
         System.out.println("Throwable msg " + throwable.getMessage());
     }
 
-    /*######################## 二、根据分组编码，发送 消息(用户信息)的 websocket服务器端 工具方法########################*/
+    /*######################## 二、根据用户id，发送 消息(用户信息)的 websocket服务器端 工具方法########################*/
     /**
      * @Author Zhouxw
      * @Date 2020/09/21 13:19
@@ -143,17 +143,17 @@ public class UserWebSocket {
     }
     /**
      * Description: 这个根据业务情况详细设计
-     * @CodeSteps： 根据分组编码，向客户端发送 消息(用户信息)
+     * @CodeSteps： 根据用户id，向客户端发送 消息(用户信息)
      * @Param key:
      * @Param message:
      * @return: void
      * Author: ljx
      * Date: 2021/3/24 0024 下午 3:35
      */
-    public static boolean sendMessage(String groupCode, String message) {
-        if (userWebSocketMap.containsKey(groupCode)) {
-            logger.debug(" 给用户 groupCode为：{}的所有终端发送消息：{}",groupCode,message);
-            Set<UserWebSocket> userWsSet=userWebSocketMap.get(groupCode);
+    public static boolean sendMessage(String userId, String message) {
+        if (userWebSocketMap.containsKey(userId)) {
+            logger.debug(" 给用户 userId为：{}的所有终端发送消息：{}",userId,message);
+            Set<UserWebSocket> userWsSet=userWebSocketMap.get(userId);
             // 给用户的所有终端发送数据消息：遍历该用户的Set中的连接即可
             for (UserWebSocket userWs : userWsSet) {
                 logger.debug("sessionId为:{}",userWs.session.getId());
@@ -161,13 +161,13 @@ public class UserWebSocket {
                     userWs.session.getBasicRemote().sendText(message);
                 } catch (IOException e) {
                     e.printStackTrace();
-                    logger.debug(" 给用户 groupCode为：{}发送消息失败",groupCode);
+                    logger.debug(" 给用户 userId为：{}发送消息失败",userId);
                     return false;
                 }
             }
             return true;
         }
-        logger.debug("发送错误：当前连接不包含 groupCode为：{}的用户",groupCode);
+        logger.debug("发送错误：当前连接不包含 userId为：{}的用户",userId);
         return false;
     }
 }
