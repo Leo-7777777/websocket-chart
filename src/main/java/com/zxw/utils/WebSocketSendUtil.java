@@ -27,7 +27,7 @@ public class WebSocketSendUtil {
      * 存储 websocket session等，以记录每个用户下多个终端【PC（不同浏览器登陆，产生的sessionid不同）、pad、phone】的连接
      */
     public static final Map<String, List<Session>> ONLINE_USER_SESSIONS = new ConcurrentHashMap<>();
-    /*######################## 二、根据分组编码，发送 消息(用户信息)的 websocket服务器端 工具方法########################*/
+    /*######################## 二、根据用户id，发送 消息(用户信息)的 websocket服务器端 工具方法########################*/
     /**
      * @Author Zhouxw
      * @Date 2020/09/21 13:19
@@ -51,7 +51,7 @@ public class WebSocketSendUtil {
     }
     /**
      * Description: 这个根据业务情况详细设计
-     * @CodeSteps： 根据分组编码，向客户端发送 消息(用户信息)
+     * @CodeSteps： 根据用户id，向客户端发送 消息(用户信息)
      * @Param key:
      * @Param message:
      * @return: void

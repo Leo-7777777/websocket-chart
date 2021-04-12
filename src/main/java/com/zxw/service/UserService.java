@@ -34,18 +34,18 @@ public interface UserService {
     UserDO addUser(UserDO user);
 
     /**
-     * 根据groupCode，列表查询用户表
-     * @param groupCode
+     * 根据userId，列表查询用户表
+     * @param userId
      * @return
      */
-    List<Map<String, Object>> selectSexNumListByGroupCode(String groupCode);
+    List<Map<String, Object>> selectSexNumListByUserId(String userId);
 
     /**
-     * 根据groupCode，查询用户表数据；并处理数据
-     * @param groupCode
+     * 根据userId，查询用户表数据；并处理数据
+     * @param userId
      * @return
      */
-    UserChartDTO dealUserChartDtoByGroupCode(String groupCode);
+    UserChartDTO dealUserChartDtoByUserId(String userId);
 
     /**
      * 根据查询条件，查询用户表数据
