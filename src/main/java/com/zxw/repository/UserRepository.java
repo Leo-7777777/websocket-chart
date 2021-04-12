@@ -44,6 +44,6 @@ public interface UserRepository extends JpaRepository<UserDO, Long> {
      * @param emailParam
      * @return
      */
-    @Query(value = "SELECT sex AS sex,count(sex) AS sexNum FROM UserDO WHERE 1=1 and user_id= :userId  and if(:emailParam!='',email LIKE CONCAT('%',:emailParam,'%'),1=1) GROUP BY sex ",  nativeQuery = true)
+    @Query(value = "SELECT sex AS sex,count(sex) AS sexNum FROM UserDO WHERE 1=1 and user_id= :userId  and if(:emailParam !='',email LIKE CONCAT('%',:emailParam,'%'),1=1) GROUP BY sex ",  nativeQuery = true)
     List<Map<String, Object>> selectSexNumListByParams(@Param("userId") String userId,@Param("emailParam") String emailParam);
 }
