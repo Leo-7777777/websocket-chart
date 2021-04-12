@@ -24,6 +24,7 @@ import java.util.Map;
  * @FR功能需求：
  * @ImportJar:
  * @ApiGrammer规则：
+        注解@RestController，是@ResponseBody和@Controller的组合注解。
  * @Remark:
  * @CodeBug解决:
  * @date 2021年3月24日 下午1:56:57
