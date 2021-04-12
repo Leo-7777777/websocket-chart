@@ -17,6 +17,8 @@ import java.util.concurrent.ConcurrentHashMap;
 * @Description: 接收 消息(用户信息)的 websocket服务器端
 * @FR功能需求：
 * @ImportJar:
+* @Reference：
+    参考链接：Sring MVC 模式下使用websocket——https://www.jianshu.com/p/3398d0230e5f
 * @ApiGrammer规则：
     注解@ServerEndpoint 是一个类层次的注解，它的功能主要是将目前的类定义成一个websocket服务器端。注解的值将被用于监听用户连接的终端访问URL地址。
 * @Remark:
