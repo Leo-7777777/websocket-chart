@@ -24,36 +24,36 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/index")
 public class IndexController {
     /**
-     * webUrl测试http://localhost:8090/websocket-chart/index/toQueryByGroupCodeIndex
+     * webUrl测试http://localhost:8090/websocket-chart/index/toQueryByUserIdIndex
      * Description: 跳转单条件图表页面
      * @return: jspStr
       */
-    @RequestMapping("/toQueryByGroupCodeIndex")
-    public String  toQueryByGroupCodeIndexFun1(){
-        String jspStr="general_jsp/queryByGroupCode/index";
+    @RequestMapping("/toQueryByUserIdIndex")
+    public String  toQueryByUserIdIndexFun1(){
+        String jspStr="general_jsp/queryByUserId/index";
         return jspStr;
     }
-    public String  toQueryByGroupCodeIndexFun2(){
-        String jspStr="forward:general_jsp/queryByGroupCode/index.html";
+    public String  toQueryByUserIdIndexFun2(){
+        String jspStr="forward:general_jsp/queryByUserId/index.html";
         return jspStr;
     }
     /**
-     * webUrl测试http://localhost:8090/websocket-chart/index/toByGroupCodeAdd
+     * webUrl测试http://localhost:8090/websocket-chart/index/toByUserIdAdd
      * @return
      */
-    @RequestMapping("/toByGroupCodeAdd")
-    public String  toByGroupCodeAdd(){
-        String jspStr="general_jsp/queryByGroupCode/add";
+    @RequestMapping("/toByUserIdAdd")
+    public String  toByUserIdAdd(){
+        String jspStr="general_jsp/queryByUserId/add";
         return jspStr;
     }
     /**
-     * webUrl测试http://localhost:8090/websocket-chart/index/toQueryByGroupCodeAndParamsIndex
+     * webUrl测试http://localhost:8090/websocket-chart/index/toQueryByUserIdAndParamsIndex
      * Description: 跳转多条件图表页面
      * @return: jspStr
       */
-    @RequestMapping("/toQueryByGroupCodeAndParamsIndex")
-    public String  toQueryByGroupCodeAndParamsIndexFun1(){
-        String jspStr="general_jsp/queryByGroupCodeAndParams/index";
+    @RequestMapping("/toQueryByUserIdAndParamsIndex")
+    public String  toQueryByUserIdAndParamsIndexFun1(){
+        String jspStr="general_jsp/queryByUserIdAndParams/index";
         return jspStr;
     }
     /**
@@ -61,8 +61,8 @@ public class IndexController {
      * @return
      */
     @RequestMapping("/toByGroupAndParamsCodeAdd")
-    public String  toByGroupCodeAndParamsAdd(){
-        String jspStr="general_jsp/queryByGroupCodeAndParams/add";
+    public String  toByUserIdAndParamsAdd(){
+        String jspStr="general_jsp/queryByUserIdAndParams/add";
         return jspStr;
     }
 }

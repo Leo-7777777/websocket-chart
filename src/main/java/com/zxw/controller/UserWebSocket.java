@@ -27,7 +27,7 @@ import java.util.concurrent.ConcurrentHashMap;
 * @author  ljx
 *
  */
-@ServerEndpoint("/userws/{groupCode}")
+@ServerEndpoint("/userws/{userId}")
 @Component
 public class UserWebSocket {
     private static final Logger logger = LoggerFactory.getLogger(UserWebSocket.class);
@@ -35,22 +35,22 @@ public class UserWebSocket {
      * 存储 websocket session等，以记录每个用户下多个终端【PC（不同浏览器登陆，产生的sessionid不同）、pad、phone】的连接
      */
     public static final Map<String, List<Session>> ONLINE_USER_SESSIONS = new ConcurrentHashMap<>();
-    /*######################## 一、根据分组编码，接收 消息(用户信息)的 websocket服务器端 ########################*/
+    /*######################## 一、根据用户id，接收 消息(用户信息)的 websocket服务器端 ########################*/
     /**
      * 当WebSocket客户端与服务器建立连接并完成握手后，前台会回调ws.onopen；后台调用@OnOpen注解的方法。
-     * @param groupCode
+     * @param userId
      * @param session
      */
     @OnOpen
-    public void openSession(@PathParam("groupCode") String groupCode,Session session) {
+    public void openSession(@PathParam("userId") String userId,Session session) {
         // ##-------- 获取请求路径中携带的信息
-        // {groupCode=dkh}
+        // {userId=dkh}
         Map<String, String> map = session.getPathParameters();
         // emailWsParam=1
         String str = session.getQueryString();
         // /userws/dkh?emailWsParam=1
         String uri = session.getRequestURI().toString();
-        List<Session> list = ONLINE_USER_SESSIONS.get(groupCode);
+        List<Session> list = ONLINE_USER_SESSIONS.get(userId);
         // 如果该用户当前是第一次连接/没有在别的终端登录
         if (null == list) {
             list = new ArrayList<>();
@@ -59,17 +59,17 @@ public class UserWebSocket {
         if (!list.contains(session)) {
             list.add(session);
         }
-        ONLINE_USER_SESSIONS.put(groupCode, list);
+        ONLINE_USER_SESSIONS.put(userId, list);
     }
 
     @OnMessage
-    public void onMessage(@PathParam("groupCode") String groupCode, String message) {
-        System.out.println(groupCode + "客户端ws.send发送的消息（或心跳信息）：" + message);
+    public void onMessage(@PathParam("userId") String userId, String message) {
+        System.out.println(userId + "客户端ws.send发送的消息（或心跳信息）：" + message);
     }
 
     @OnClose
-    public void onClose(@PathParam("groupCode") String groupCode, Session session) {
-        List<Session> list = ONLINE_USER_SESSIONS.get(groupCode);
+    public void onClose(@PathParam("userId") String userId, Session session) {
+        List<Session> list = ONLINE_USER_SESSIONS.get(userId);
         // 移除该用户的websocket session记录
         list.remove(session);
         try {
@@ -88,7 +88,7 @@ public class UserWebSocket {
         }
         System.out.println("Throwable msg " + throwable.getMessage());
     }
-    /*######################## 二、根据分组编码，发送 消息(用户信息)的 websocket服务器端 工具方法########################*/
+    /*######################## 二、根据用户id，发送 消息(用户信息)的 websocket服务器端 工具方法########################*/
     /**
      * @Author Zhouxw
      * @Date 2020/09/21 13:19
@@ -112,7 +112,7 @@ public class UserWebSocket {
     }
     /**
      * Description: 这个根据业务情况详细设计
-     * @CodeSteps： 根据分组编码，向客户端发送 消息(用户信息)
+     * @CodeSteps： 根据用户id，向客户端发送 消息(用户信息)
      * @Param key:
      * @Param message:
      * @return: void
