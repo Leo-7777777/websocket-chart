@@ -25,25 +25,25 @@ import java.util.Map;
 @Repository
 public interface UserRepository extends JpaRepository<UserDO, Long> {
     /**
-     * 根据性别、groupCode，查询用户表条数
+     * 根据性别、userId，查询用户表条数
      * @param sex       性别
-     * @param groupCode 分组编码
+     * @param userId 用户id
      * @return
      */
-    int countBySexAndGroupCode(String sex, String groupCode);
+    int countBySexAndUserId(String sex, String userId);
     /**
-     * 根据groupCode，列表查询
-     * @param groupCode 分组编码
+     * 根据userId，列表查询
+     * @param userId 用户id
      * @return
      */
-    @Query("SELECT sex AS sex,count(sex) AS sexNum FROM UserDO  WHERE groupCode = ?1 GROUP BY sex")
-    List<Map<String, Object>> selectSexNumListByGroupCode(String groupCode);
+    @Query("SELECT sex AS sex,count(sex) AS sexNum FROM UserDO  WHERE userId = ?1 GROUP BY sex")
+    List<Map<String, Object>> selectSexNumListByUserId(String userId);
     /**
-     * 根据groupCode、前台页面条件，列表查询
-     * @param groupCode
+     * 根据userId、前台页面条件，列表查询
+     * @param userId
      * @param emailParam
      * @return
      */
-    @Query(value = "SELECT sex AS sex,count(sex) AS sexNum FROM UserDO WHERE 1=1 and group_code= :groupCode  and if(:emailParam!='',email LIKE CONCAT('%',:emailParam,'%'),1=1) GROUP BY sex ",  nativeQuery = true)
-    List<Map<String, Object>> selectSexNumListByParams(@Param("groupCode") String groupCode,@Param("emailParam") String emailParam);
+    @Query(value = "SELECT sex AS sex,count(sex) AS sexNum FROM UserDO WHERE 1=1 and user_id= :userId  and if(:emailParam!='',email LIKE CONCAT('%',:emailParam,'%'),1=1) GROUP BY sex ",  nativeQuery = true)
+    List<Map<String, Object>> selectSexNumListByParams(@Param("userId") String userId,@Param("emailParam") String emailParam);
 }

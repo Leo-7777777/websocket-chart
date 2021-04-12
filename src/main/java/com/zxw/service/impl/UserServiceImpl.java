@@ -42,13 +42,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<Map<String, Object>> selectSexNumListByGroupCode(String groupCode) {
-        return userRepository.selectSexNumListByGroupCode(groupCode);
+    public List<Map<String, Object>> selectSexNumListByUserId(String userId) {
+        return userRepository.selectSexNumListByUserId(userId);
     }
     @Override
-    public UserChartDTO dealUserChartDtoByGroupCode(String groupCode) {
+    public UserChartDTO dealUserChartDtoByUserId(String userId) {
         UserChartDTO userChartDTO = new UserChartDTO();
-        List<Map<String, Object>> mapList = selectSexNumListByGroupCode(groupCode);
+        List<Map<String, Object>> mapList = selectSexNumListByUserId(userId);
         if (null != mapList && mapList.size() > 0) {
             mapList.forEach((Map<String, Object> map) -> {
                 switch ((int) map.get("sex")) {
@@ -69,9 +69,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<Map<String, Object>> selectSexNumListByParams(Map<String, Object> params) {
-        String groupCode= (String)params.get("groupCode");
+        String userId= (String)params.get("userId");
         String emailParam=(String)params.get("emailParam");
-        return userRepository.selectSexNumListByParams(groupCode,emailParam);
+        return userRepository.selectSexNumListByParams(userId,emailParam);
     }
     @Override
     public UserChartDTO dealUserChartDtoByParams(Map<String, Object> params) {

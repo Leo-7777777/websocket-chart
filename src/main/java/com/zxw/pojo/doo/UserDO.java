@@ -23,10 +23,10 @@ public class UserDO {
     @GeneratedValue
     private Long id;
     /**
-     * 分组编码
+     * 用户id
      */
     @Column(nullable = false)
-    private String groupCode;
+    private String userId;
     @Column(nullable = false, unique = true)
     private String userName;
     @Column(nullable = false)
@@ -37,8 +37,8 @@ public class UserDO {
     public UserDO() {
     }
 
-    public UserDO(String groupCode, String userName, Integer sex, String email) {
-        this.groupCode = groupCode;
+    public UserDO(String userId, String userName, Integer sex, String email) {
+        this.userId = userId;
         this.userName = userName;
         this.sex = sex;
         this.email = email;
@@ -52,12 +52,12 @@ public class UserDO {
         this.id = id;
     }
 
-    public String getGroupCode() {
-        return groupCode;
+    public String getUserId() {
+        return userId;
     }
 
-    public void setGroupCode(String groupCode) {
-        this.groupCode = groupCode;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public String getUserName() {
@@ -91,7 +91,7 @@ public class UserDO {
     public String toString() {
         return "UserDO{" +
                 "id=" + id +
-                ", groupCode='" + groupCode + '\'' +
+                ", userId='" + userId + '\'' +
                 ", userName='" + userName + '\'' +
                 ", sex=" + sex +
                 ", email='" + email + '\'' +
