@@ -57,10 +57,10 @@ public class IndexController {
         return jspStr;
     }
     /**
-     * webUrl测试http://localhost:8090/websocket-chart/index/toByGroupAndParamsCodeAdd
+     * webUrl测试http://localhost:8090/websocket-chart/index/toByUserIdAndParamsAdd
      * @return
      */
-    @RequestMapping("/toByGroupAndParamsCodeAdd")
+    @RequestMapping("/toByUserIdAndParamsAdd")
     public String  toByUserIdAndParamsAdd(){
         String jspStr="general_jsp/queryByUserIdAndParams/add";
         return jspStr;
