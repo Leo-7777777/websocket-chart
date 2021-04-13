@@ -95,7 +95,7 @@ public class UserWebSocketServer {
      * @Param [session, message]
      * @Return void
      */
-    public static void sendMessage(Session session, String message) {
+    public static void sendMessageToJsWebsocket(Session session, String message) {
         if (session == null) {
             return;
         }
@@ -118,12 +118,12 @@ public class UserWebSocketServer {
      * Author: ljx
      * Date: 2021/3/24 0024 下午 3:35
      */
-    public static void sendMessage(String key, String message) {
+    public static void sendMessageToJsWebsocket(String key, String message) {
         List<Session> list = ONLINE_USER_SESSIONS.get(key);
         // 给用户的所有终端发送数据消息
         list.stream().forEach(se -> {
             if(se.isOpen()){
-                sendMessage(se, message);
+                sendMessageToJsWebsocket(se, message);
             }
         });
     }
