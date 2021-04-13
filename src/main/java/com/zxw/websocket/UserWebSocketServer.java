@@ -34,7 +34,7 @@ public class UserWebSocketServer {
      * 存储 websocket session等，以记录每个用户下多个终端【PC（不同浏览器登陆，产生的sessionid不同）、pad、phone】的连接
      */
     public static final Map<String, List<Session>> ONLINE_USER_SESSIONS = new ConcurrentHashMap<>();
-    /*######################## 一、根据用户id，接收 消息(用户信息)的 websocket服务器端 ########################*/
+    /*######################## 一、根据用户id，接收 消息(用户信息)的 websocket服务端 ########################*/
     /**
      * 当前台用户终端【浏览器】页面，使用js WebSocket；与服务器建立连接并完成握手后，前台会回调ws.onopen；后台调用@OnOpen注解的方法。
      * @param userId
@@ -87,7 +87,7 @@ public class UserWebSocketServer {
         }
         System.out.println("Throwable msg " + throwable.getMessage());
     }
-    /*######################## 二、根据用户id，发送 消息(用户信息)的 websocket服务器端 工具方法########################*/
+    /*######################## 二、根据用户id，发送 消息(用户信息)的 websocket服务端 工具方法########################*/
     /**
      * @Author Zhouxw
      * @Date 2020/09/21 13:19
