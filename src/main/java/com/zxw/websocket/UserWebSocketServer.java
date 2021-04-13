@@ -82,7 +82,7 @@ public class UserWebSocketServer {
             userId="";
             // 根据条件，列表查询用户表
             UserChartDTO userChartDTO =new UserChartDTO();
-            sendMessageToJsWebsocket(userId, JSON.toJSONString(userChartDTO));
+            sendMessageToWebsocketJs(userId, JSON.toJSONString(userChartDTO));
         }
     }
 
@@ -115,7 +115,7 @@ public class UserWebSocketServer {
      * @Param [session, message]
      * @Return void
      */
-    public static void sendMessageToJsWebsocket(Session session, String message) {
+    public static void sendMessageToWebsocketJs(Session session, String message) {
         if (session == null) {
             return;
         }
@@ -138,12 +138,12 @@ public class UserWebSocketServer {
      * Author: ljx
      * Date: 2021/3/24 0024 下午 3:35
      */
-    public static void sendMessageToJsWebsocket(String key, String message) {
+    public static void sendMessageToWebsocketJs(String key, String message) {
         List<Session> list = ONLINE_USER_SESSIONS.get(key);
         // 给用户的所有终端发送数据消息
         list.stream().forEach(se -> {
             if(se.isOpen()){
-                sendMessageToJsWebsocket(se, message);
+                sendMessageToWebsocketJs(se, message);
             }
         });
     }
