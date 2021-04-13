@@ -63,8 +63,9 @@ public class UserWebSocket {
      */
     @OnOpen
     public void openSession(@PathParam("userId") String userId, Session session) {
-        this.session=session;
         this.userId=userId;
+        this.session=session;
+        // 在线数加1
         onlineCount++;
         // 如果该用户当前是第一次连接/没有在别的终端登录
         if (!userWebSocketMap.containsKey(this.userId)) {
@@ -87,6 +88,7 @@ public class UserWebSocket {
     @OnMessage
     public void onMessage(@PathParam("userId") String userId, String message) {
         System.out.println(userId + "客户端ws.send发送的消息（或心跳信息）：" + message);
+        this.userId=userId;
         this.message=message;
     }
     /**
@@ -99,6 +101,10 @@ public class UserWebSocket {
       */
     @OnClose
     public void onClose(@PathParam("userId") String userId, Session session) {
+        this.userId=userId;
+        this.session=session;
+        // 在线数减1
+        onlineCount--;
         // 如果该用户当前没有连接了/没有在别的终端登录了/所有终端都下线了
         if (userWebSocketMap.get(this.userId).size() == 0) {
             // 移除Map中该用户的websocket session等记录
