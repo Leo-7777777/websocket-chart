@@ -25,9 +25,9 @@ import java.util.Map;
  * @date 2021/4/13 0013 上午 9:46
  */
 public class UserWebSocketClientToServerTest {
-    private String uri = "ws://192.168.21.21:8090/websocket-chart/userws/";
-    private Session session;
-    public void main(String[] args) {
+    private static String uri = "ws://192.168.21.21:8090/websocket-chart/userws/"+"dkh";
+    private static Session session;
+    public static  void main(String[] args) {
         // websocket客户端，发送消息到websocket服务端
         sendMessageToUserWebSocketServer();
     }
@@ -35,7 +35,7 @@ public class UserWebSocketClientToServerTest {
      * @Description: websocket客户端，连接websocket服务端
      * @return:
      */
-    protected void connectUserWebSocketServer(){
+    protected static void connectUserWebSocketServer(){
         WebSocketContainer container = ContainerProvider.getWebSocketContainer();
         System.out.println("Connecting to" + uri);
         try {
@@ -51,14 +51,14 @@ public class UserWebSocketClientToServerTest {
      * @Param args:
      * @return:
       */
-    public void sendMessageToUserWebSocketServer(){
+    public static void sendMessageToUserWebSocketServer(){
         // websocket客户端，连接websocket服务端
         connectUserWebSocketServer();
         // 发送到websocket服务端，的消息“数据库表，有数据变动”
         String message = "dbTableCurrentHaveUpdate";
         try {
-            this.session.getBasicRemote().sendText(ConstantUtil.TO_WEBSOCKET_OF_CLIENT_TYPE2+"_"+message);
-            this.session.close();
+            UserWebSocketClientToServerTest.session.getBasicRemote().sendText(ConstantUtil.TO_WEBSOCKET_OF_CLIENT_TYPE2+"_"+message);
+            UserWebSocketClientToServerTest.session.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
