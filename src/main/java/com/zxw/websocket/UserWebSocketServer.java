@@ -1,9 +1,8 @@
-package com.zxw.controller;
+package com.zxw.websocket;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.websocket.*;
 import javax.websocket.server.PathParam;
@@ -14,13 +13,13 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  *
-* @Description: 接收 消息(用户信息)的 websocket服务器端
+* @Description: 接收 消息(用户信息)的 websocket服务端
 * @FR功能需求：
 * @ImportJar:
 * @Reference：
     参考链接：Sring MVC 模式下使用websocket——https://www.jianshu.com/p/3398d0230e5f
 * @ApiGrammer规则：
-    注解@ServerEndpoint 是一个类层次的注解，它的功能主要是将目前的类定义成一个websocket服务器端。注解的值将被用于监听用户连接的终端访问URL地址。
+    注解@ServerEndpoint 是一个类层次的注解，它的功能主要是将目前的类定义成一个websocket服务端。注解的值将被用于监听用户连接的终端访问URL地址。
 * @Remark:
 * @CodeBug解决:
 * @date 2021年3月24日 下午1:36:00
@@ -29,8 +28,8 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 @ServerEndpoint("/userws/{userId}")
 @Component
-public class UserWebSocket {
-    private static final Logger logger = LoggerFactory.getLogger(UserWebSocket.class);
+public class UserWebSocketServer {
+    private static final Logger logger = LoggerFactory.getLogger(UserWebSocketServer.class);
     /**
      * 静态变量，用来记录当前在线连接数。应该把它设计成线程安全的。
      */
@@ -38,7 +37,7 @@ public class UserWebSocket {
     /**
      * 存储 websocket session等，以记录每个用户下多个终端【PC（不同浏览器登陆，产生的sessionid不同）、pad、phone】的连接
      */
-    private static Map<String, Set<UserWebSocket>> userWebSocketMap = new ConcurrentHashMap<>();
+    private static Map<String, Set<UserWebSocketServer>> userWebSocketMap = new ConcurrentHashMap<>();
     /**
      * 连接特征userId
      */
@@ -52,9 +51,9 @@ public class UserWebSocket {
      */
     private String message;
 
-    /*######################## 一、根据用户id，接收 消息(用户信息)的 websocket服务器端 ########################*/
+    /*######################## 一、根据用户id，接收 消息(用户信息)的 websocket服务端 ########################*/
     /**
-     * 当WebSocket客户端与服务器建立连接并完成握手后，前台会回调ws.onopen；后台调用@OnOpen注解的方法。
+     * 当前台用户终端【浏览器】页面，使用js WebSocket；与服务器建立连接并完成握手后，前台会回调ws.onopen；后台调用@OnOpen注解的方法。
      * @CodeSteps： 新建连接时需要判断是该用户当前是否第一次连接/是否已经在别的终端登录；
                     如果该用户当前是第一次连接/没有在别的终端登录，则对Map增加一个userId；
                     如果该用户当前不是第一次连接/已经在别的终端登录，将新的连接实例sessionid，添加入已有的用户Set中。
@@ -70,7 +69,7 @@ public class UserWebSocket {
         // 如果该用户当前是第一次连接/没有在别的终端登录
         if (!userWebSocketMap.containsKey(this.userId)) {
             logger.debug("当前用户 userId:{}第一个终端登录",this.userId);
-            Set<UserWebSocket> addUserSet = new HashSet<>();
+            Set<UserWebSocketServer> addUserSet = new HashSet<>();
             addUserSet.add(this);
             // 对Map增加一个userId
             userWebSocketMap.put(this.userId, addUserSet);
@@ -87,7 +86,7 @@ public class UserWebSocket {
 
     @OnMessage
     public void onMessage(@PathParam("userId") String userId, String message) {
-        System.out.println(userId + "客户端ws.send发送的消息（或心跳信息）：" + message);
+        System.out.println(userId + "前台用户终端【浏览器】页面，ws.send发送的消息（或心跳信息）：" + message);
         this.userId=userId;
         this.message=message;
     }
@@ -127,11 +126,11 @@ public class UserWebSocket {
         System.out.println("Throwable msg " + throwable.getMessage());
     }
 
-    /*######################## 二、根据用户id，发送 消息(用户信息)的 websocket服务器端 工具方法########################*/
+    /*######################## 二、根据用户id，发送 消息(用户信息)的 websocket服务端 工具方法########################*/
     /**
      * @Author Zhouxw
      * @Date 2020/09/21 13:19
-     * @Description 向客户端发送 消息
+     * @Description 向前台用户终端【浏览器】页面，发送 消息(用户信息)
      * @Param [session, message]
      * @Return void
      */
@@ -151,7 +150,7 @@ public class UserWebSocket {
     }
     /**
      * Description: 这个根据业务情况详细设计
-     * @CodeSteps： 根据用户id，向客户端发送 消息(用户信息)
+     * @CodeSteps： 根据用户id，向前台用户终端【浏览器】页面，发送 消息(用户信息)
      * @Param key:
      * @Param message:
      * @return: void
@@ -161,9 +160,9 @@ public class UserWebSocket {
     public static boolean sendMessage(String userId, String message) {
         if (userWebSocketMap.containsKey(userId)) {
             logger.debug(" 给用户 userId为：{}的所有终端发送消息：{}",userId,message);
-            Set<UserWebSocket> userWsSet=userWebSocketMap.get(userId);
+            Set<UserWebSocketServer> userWsSet=userWebSocketMap.get(userId);
             // 给用户的所有终端发送数据消息：遍历该用户的Set中的连接即可
-            for (UserWebSocket userWs : userWsSet) {
+            for (UserWebSocketServer userWs : userWsSet) {
                 logger.debug("sessionId为:{}",userWs.session.getId());
                 try {
                     userWs.session.getBasicRemote().sendText(message);
