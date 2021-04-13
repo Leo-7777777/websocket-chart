@@ -20,8 +20,9 @@ import java.net.URI;
  * @date 2021/4/13 0013 上午 9:46
  */
 public class UserWebSocketClientToServerTest {
-    public Session session;
-    public static void main(String args[]) {
+    private static String uri = "ws://192.168.21.21:8090/websocket-chart/userws/";
+    private Session session;
+    public void main(String args[]) {
         // websocket客户端，发送消息到websocket服务端
         sendMessageToUserWebSocketServer(args);
     }
@@ -30,16 +31,16 @@ public class UserWebSocketClientToServerTest {
      * @Param args:
      * @return:
       */
-    public static void sendMessageToUserWebSocketServer(String args[]){
-        UserWebSocketClientToServerTest client = new UserWebSocketClientToServerTest();
-        client.connectUserWebSocketServer();
+    public void sendMessageToUserWebSocketServer(String args[]){
+        // websocket客户端，连接websocket服务端
+        connectUserWebSocketServer();
         String message = "无参";
         if (args != null && args.length > 0) {
             message = args[0];
         }
         try {
-            client.session.getBasicRemote().sendText(message);
-            client.session.close();
+            this.session.getBasicRemote().sendText(message);
+            this.session.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -50,7 +51,6 @@ public class UserWebSocketClientToServerTest {
       */
     protected void connectUserWebSocketServer(){
         WebSocketContainer container = ContainerProvider.getWebSocketContainer();
-        String uri = "ws://192.168.21.21:8090/websocket-chart/userws/";
         System.out.println("Connecting to" + uri);
         try {
             session = container.connectToServer(UserWebSocketClient.class, URI.create(uri));
