@@ -64,6 +64,20 @@ public class UserWebSocketServer {
     @OnMessage
     public void onMessage(@PathParam("userId") String userId, String message) {
         System.out.println(userId + "前台用户终端【浏览器】页面，ws.send发送的消息（或心跳信息）：" + message);
+        // 前台用户终端【浏览器】页面，ws.send发送的消息（或心跳信息）
+        if(message.startsWith("jsWebsocket")){
+            // 接收并处理消息
+
+            // 向前台发送消息
+
+        }
+        // 后台服务器的websocket客户端|ClientEndpoint|Java服务器，UserWebSocketClient.java发送的消息（或心跳信息）
+        else if(message.startsWith("websocketClient")){
+            // 接收并处理消息
+
+            // 向前台发送消息
+
+        }
     }
 
     @OnClose

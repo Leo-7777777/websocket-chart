@@ -20,7 +20,8 @@ import java.net.URI;
  * @date 2021/4/13 0013 上午 9:46
  */
 public class UserWebSocketClientToServerTest {
-    private static String uri = "ws://192.168.21.21:8090/websocket-chart/userws/";
+    private String uri = "ws://192.168.21.21:8090/websocket-chart/userws/";
+    private String clientToWebsocketType="websocketClient";
     private Session session;
     public void main(String args[]) {
         // websocket客户端，发送消息到websocket服务端
@@ -39,7 +40,7 @@ public class UserWebSocketClientToServerTest {
             message = args[0];
         }
         try {
-            this.session.getBasicRemote().sendText(message);
+            this.session.getBasicRemote().sendText(clientToWebsocketType+"_"+message);
             this.session.close();
         } catch (IOException e) {
             e.printStackTrace();
