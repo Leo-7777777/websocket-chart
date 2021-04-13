@@ -134,7 +134,7 @@ public class UserWebSocketServer {
      * @Param [session, message]
      * @Return void
      */
-    public static void sendMessage(Session session, String message) {
+    public static void sendMessageToJsWebsocket(Session session, String message) {
         if (session == null) {
             return;
         }
@@ -157,15 +157,16 @@ public class UserWebSocketServer {
      * Author: ljx
      * Date: 2021/3/24 0024 下午 3:35
      */
-    public static boolean sendMessage(String userId, String message) {
+    public static boolean sendMessageToJsWebsocket(String userId, String message) {
         if (userWebSocketMap.containsKey(userId)) {
             logger.debug(" 给用户 userId为：{}的所有终端发送消息：{}",userId,message);
             Set<UserWebSocketServer> userWsSet=userWebSocketMap.get(userId);
             // 给用户的所有终端发送数据消息：遍历该用户的Set中的连接即可
             for (UserWebSocketServer userWs : userWsSet) {
                 logger.debug("sessionId为:{}",userWs.session.getId());
+                final RemoteEndpoint.Basic basic = userWs.session.getBasicRemote();
                 try {
-                    userWs.session.getBasicRemote().sendText(message);
+                    basic.sendText(message);
                 } catch (IOException e) {
                     e.printStackTrace();
                     logger.debug(" 给用户 userId为：{}发送消息失败",userId);
