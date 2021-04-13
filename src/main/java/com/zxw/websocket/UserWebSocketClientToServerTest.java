@@ -24,7 +24,7 @@ import java.net.URI;
 public class UserWebSocketClientToServerTest {
     private String uri = "ws://192.168.21.21:8090/websocket-chart/userws/";
     private Session session;
-    public void main(String args[]) {
+    public void main(String[] args) {
         // websocket客户端，发送消息到websocket服务端
         sendMessageToUserWebSocketServer(args);
     }
@@ -33,7 +33,7 @@ public class UserWebSocketClientToServerTest {
      * @Param args:
      * @return:
       */
-    public void sendMessageToUserWebSocketServer(String args[]){
+    public void sendMessageToUserWebSocketServer(String[] args){
         // websocket客户端，连接websocket服务端
         connectUserWebSocketServer();
         String message = "无参";
