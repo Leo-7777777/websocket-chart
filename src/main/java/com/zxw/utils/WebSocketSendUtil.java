@@ -31,7 +31,7 @@ public class WebSocketSendUtil {
     /**
      * @Author Zhouxw
      * @Date 2020/09/21 13:19
-     * @Description 向客户端发送 消息
+     * @Description 向前台用户终端【浏览器】页面，发送 消息(用户信息)
      * @Param [session, message]
      * @Return void
      */
@@ -51,12 +51,10 @@ public class WebSocketSendUtil {
     }
     /**
      * Description: 这个根据业务情况详细设计
-     * @CodeSteps： 根据用户id，向客户端发送 消息(用户信息)
+     * @CodeSteps： 根据用户id，向前台用户终端【浏览器】页面，发送 消息(用户信息)
      * @Param key:
      * @Param message:
      * @return: void
-     * Author: ljx
-     * Date: 2021/3/24 0024 下午 3:35
       */
     public static void sendMessage(String key, String message) {
         List<Session> list = ONLINE_USER_SESSIONS.get(key);

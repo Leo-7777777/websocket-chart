@@ -106,9 +106,9 @@ public class UserController {
         WebSocketSendUtil.sendMessage(user.getUserId(), JSON.toJSONString(userChartDTO));
         return result;
     }
-    /*######################## 一、根据用户id，接收 消息(用户信息)的 websocket服务器端 ########################*/
+    /*######################## 一、根据用户id，接收 消息(用户信息)的 websocket服务端 ########################*/
     /**
-     * 当WebSocket客户端与服务器建立连接并完成握手后，前台会回调ws.onopen；后台调用@OnOpen注解的方法。
+     * 当前台用户终端【浏览器】页面，使用js WebSocket；与服务器建立连接并完成握手后，前台会回调ws.onopen；后台调用@OnOpen注解的方法。
      * @param userId
      * @param session
      */
@@ -128,7 +128,7 @@ public class UserController {
 
     @OnMessage
     public void onMessage(@PathParam("userId") String userId, String message) {
-        System.out.println(userId + "客户端ws.send发送的消息（或心跳信息）：" + message);
+        System.out.println(userId + "前台用户终端【浏览器】页面，ws.send发送的消息（或心跳信息）：" + message);
     }
 
     @OnClose
