@@ -1,4 +1,4 @@
-package com.ljx.wcneln._09util;
+package com.ljx.wcneln._09util.maputil;
 
 import java.util.HashMap;
 /**
