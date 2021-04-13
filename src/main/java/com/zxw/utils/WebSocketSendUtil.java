@@ -35,7 +35,7 @@ public class WebSocketSendUtil {
      * @Param [session, message]
      * @Return void
      */
-    public static void sendMessageToJsWebsocket(Session session, String message) {
+    public static void sendMessageToWebsocketJs(Session session, String message) {
         if (session == null) {
             return;
         }
@@ -56,12 +56,12 @@ public class WebSocketSendUtil {
      * @Param message:
      * @return: void
       */
-    public static void sendMessageToJsWebsocket(String key, String message) {
+    public static void sendMessageToWebsocketJs(String key, String message) {
         List<Session> list = ONLINE_USER_SESSIONS.get(key);
         // 给用户的所有终端发送数据消息
         list.stream().forEach(se -> {
             if(se.isOpen()){
-                sendMessageToJsWebsocket(se, message);
+                sendMessageToWebsocketJs(se, message);
             }
         });
     }
