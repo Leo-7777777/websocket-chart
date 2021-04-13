@@ -16,7 +16,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  *
-* @Description: 接收 消息(用户信息)的 websocket服务端
+* @Description: 后台服务器的websocket服务器端|ServerEndpoint
 * @FR功能需求：
 * @ImportJar:
 * @Reference：
