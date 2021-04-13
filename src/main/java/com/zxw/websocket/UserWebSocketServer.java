@@ -15,11 +15,11 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  *
-* @Description: 接收 消息(用户信息)的 websocket服务器端
+* @Description: 接收 消息(用户信息)的 websocket服务端
 * @FR功能需求：
 * @ImportJar:
 * @ApiGrammer规则：
-    注解@ServerEndpoint 是一个类层次的注解，它的功能主要是将目前的类定义成一个websocket服务器端。注解的值将被用于监听用户连接的终端访问URL地址。
+    注解@ServerEndpoint 是一个类层次的注解，它的功能主要是将目前的类定义成一个websocket服务端。注解的值将被用于监听用户连接的终端访问URL地址。
 * @Remark:
 * @CodeBug解决:
 * @date 2021年3月24日 下午1:36:00
@@ -36,7 +36,7 @@ public class UserWebSocketServer {
     public static final Map<String, List<Session>> ONLINE_USER_SESSIONS = new ConcurrentHashMap<>();
     /*######################## 一、根据用户id，接收 消息(用户信息)的 websocket服务器端 ########################*/
     /**
-     * 当WebSocket客户端与服务器建立连接并完成握手后，前台会回调ws.onopen；后台调用@OnOpen注解的方法。
+     * 当前台用户终端【浏览器】页面，使用js WebSocket；与服务器建立连接并完成握手后，前台会回调ws.onopen；后台调用@OnOpen注解的方法。
      * @param userId
      * @param session
      */
@@ -63,7 +63,7 @@ public class UserWebSocketServer {
 
     @OnMessage
     public void onMessage(@PathParam("userId") String userId, String message) {
-        System.out.println(userId + "客户端ws.send发送的消息（或心跳信息）：" + message);
+        System.out.println(userId + "前台用户终端【浏览器】页面，ws.send发送的消息（或心跳信息）：" + message);
     }
 
     @OnClose
@@ -91,7 +91,7 @@ public class UserWebSocketServer {
     /**
      * @Author Zhouxw
      * @Date 2020/09/21 13:19
-     * @Description 向客户端发送 消息
+     * @Description 向前台用户终端【浏览器】页面，发送 消息(用户信息)
      * @Param [session, message]
      * @Return void
      */
@@ -111,7 +111,7 @@ public class UserWebSocketServer {
     }
     /**
      * Description: 这个根据业务情况详细设计
-     * @CodeSteps： 根据用户id，向客户端发送 消息(用户信息)
+     * @CodeSteps： 根据用户id，向前台用户终端【浏览器】页面，发送 消息(用户信息)
      * @Param key:
      * @Param message:
      * @return: void
