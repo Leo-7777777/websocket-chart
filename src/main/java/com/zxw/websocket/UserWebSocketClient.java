@@ -5,13 +5,9 @@ import com.ljx.wcneln._09util.constantutil.ConstantUtil;
 import javax.websocket.*;
 import java.io.IOException;
 import java.net.URI;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
 /**
  * @author ljx
- * @Description: 数据库触发器的外部程序或接口
+ * @Description: 后台服务器的websocket客户端|ClientEndpoint|Java服务器|数据库触发器的外部程序或接口
  * @FR功能需求：
         前台用户终端【浏览器】页面，使用js WebSocket；
         通过后台服务器的websocket服务器端|ServerEndpoint即UserWebSocketServer.java，维护Java服务器会话、用户终端的Sessions；
@@ -55,6 +51,9 @@ public class UserWebSocketClient {
                 System.out.println("Websocket closed");
         }
         /*######################## 二、发送 消息的 websocket客户端 工具方法########################*/
+        /**
+         * websocket服务端地址
+         */
         private static String uri = "ws://192.168.21.21:8090/websocket-chart/userws/"+"dkh";
         private static Session session;
         public static  void main(String[] args) {
