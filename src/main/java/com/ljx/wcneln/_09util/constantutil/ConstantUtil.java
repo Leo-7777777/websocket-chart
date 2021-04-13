@@ -20,6 +20,6 @@ public class ConstantUtil {
     /**
      * 到websocket服务端，的客户端类型
      */
-    public static final String TO_WEBSOCKET_OF_CLIENT_TYPE1="jsWebsocket";
+    public static final String TO_WEBSOCKET_OF_CLIENT_TYPE1="websocketJs";
     public static final String TO_WEBSOCKET_OF_CLIENT_TYPE2="websocketClient";
 }

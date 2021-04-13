@@ -1,7 +1,6 @@
 package com.zxw.websocket;
 
 import com.ljx.wcneln._09util.constantutil.ConstantUtil;
-import com.ljx.wcneln._09util.maputil.MapGetter;
 
 import javax.websocket.ContainerProvider;
 import javax.websocket.DeploymentException;
@@ -10,7 +9,6 @@ import javax.websocket.WebSocketContainer;
 import java.io.IOException;
 import java.net.URI;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
