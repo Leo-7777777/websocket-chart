@@ -52,15 +52,10 @@ public class UserWebSocketClientToServerTest {
      * @return:
       */
     public void sendMessageToUserWebSocketServer(){
-        // 查询数据库数据
-        List<Map<String,Object>> list=new ArrayList<Map<String,Object>>();
         // websocket客户端，连接websocket服务端
         connectUserWebSocketServer();
-        // 发送到websocket服务端，的消息
-        String message = "";
-        if (list != null && list.size() > 0) {
-            message = list.toString();
-        }
+        // 发送到websocket服务端，的消息“数据库表，有数据变动”
+        String message = "dbTableCurrentHaveUpdate";
         try {
             this.session.getBasicRemote().sendText(ConstantUtil.TO_WEBSOCKET_OF_CLIENT_TYPE2+"_"+message);
             this.session.close();

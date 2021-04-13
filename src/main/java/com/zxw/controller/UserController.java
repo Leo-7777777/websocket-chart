@@ -58,7 +58,7 @@ public class UserController {
         String userId=user.getUserId();
         // 拼装的用户数据（根据用户id，列表查询用户表）
         UserChartDTO userChartDTO = userService.dealUserChartDtoByUserId(userId);
-        // 通知前端
+        // 通知前端，向前台发送消息
         UserWebSocketServer.sendMessageToJsWebsocket(user.getUserId(), JSON.toJSONString(userChartDTO));
         return result;
     }
@@ -97,7 +97,7 @@ public class UserController {
         params.put("emailParam",emailParam);
         // 拼装的用户数据（根据用户id、前台页面条件，列表查询用户表）
         UserChartDTO userChartDTO = userService.dealUserChartDtoByParams(params);
-        // 通知前端
+        // 通知前端，向前台发送消息
         UserWebSocketServer.sendMessageToJsWebsocket(user.getUserId(), JSON.toJSONString(userChartDTO));
         return result;
     }

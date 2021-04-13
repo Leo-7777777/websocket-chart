@@ -1,6 +1,8 @@
 package com.zxw.websocket;
 
+import com.alibaba.fastjson.JSON;
 import com.ljx.wcneln._09util.constantutil.ConstantUtil;
+import com.zxw.pojo.dto.UserChartDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -67,17 +69,20 @@ public class UserWebSocketServer {
         // 前台用户终端【浏览器】页面，ws.send发送的消息（或心跳信息）
         if(message.startsWith(ConstantUtil.TO_WEBSOCKET_OF_CLIENT_TYPE1)){
             System.out.println(userId + "前台用户终端【浏览器】页面，ws.send发送的消息（或心跳信息）：" + message);
-            // 接收并处理消息
+            // --接收并处理消息
 
-            // 向前台发送消息
+            // --向前台发送消息
 
         }
         // 后台服务器的websocket客户端|ClientEndpoint|Java服务器，UserWebSocketClient.java发送的消息（或心跳信息）
         else if(message.startsWith(ConstantUtil.TO_WEBSOCKET_OF_CLIENT_TYPE2)){
-            // 接收并处理消息
-
-            // 向前台发送消息
-
+            // --接收并处理消息
+            // --通知前端，向前台发送消息
+            // 从session中，获取当前登录用户id
+            userId="";
+            // 根据条件，列表查询用户表
+            UserChartDTO userChartDTO =new UserChartDTO();
+            sendMessageToJsWebsocket(userId, JSON.toJSONString(userChartDTO));
         }
     }
 
@@ -127,8 +132,8 @@ public class UserWebSocketServer {
     /**
      * Description: 这个根据业务情况详细设计
      * @CodeSteps： 根据用户id，向前台用户终端【浏览器】页面，发送 消息(用户信息)
-     * @Param key:
-     * @Param message:
+     * @Param key:      userId
+     * @Param message:  消息(用户信息)
      * @return: void
      * Author: ljx
      * Date: 2021/3/24 0024 下午 3:35
