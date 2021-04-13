@@ -1,9 +1,8 @@
-package com.zxw.controller;
+package com.zxw.websocket;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.websocket.*;
 import javax.websocket.server.PathParam;
@@ -29,8 +28,8 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 @ServerEndpoint("/userws/{userId}")
 @Component
-public class UserWebSocket {
-    private static final Logger logger = LoggerFactory.getLogger(UserWebSocket.class);
+public class UserWebSocketServer {
+    private static final Logger logger = LoggerFactory.getLogger(UserWebSocketServer.class);
     /**
      * 存储 websocket session等，以记录每个用户下多个终端【PC（不同浏览器登陆，产生的sessionid不同）、pad、phone】的连接
      */

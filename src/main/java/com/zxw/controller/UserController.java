@@ -1,10 +1,11 @@
 package com.zxw.controller;
 
-import com.ljx.wcneln._09util.MapGetter;
+import com.ljx.wcneln._09util.maputil.MapGetter;
 import com.zxw.pojo.dto.UserChartDTO;
 import com.zxw.pojo.doo.UserDO;
 import com.zxw.service.UserService;
 import com.alibaba.fastjson.JSON;
+import com.zxw.websocket.UserWebSocketServer;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -58,7 +59,7 @@ public class UserController {
         // 拼装的用户数据（根据用户id，列表查询用户表）
         UserChartDTO userChartDTO = userService.dealUserChartDtoByUserId(userId);
         // 通知前端
-        UserWebSocket.sendMessage(user.getUserId(), JSON.toJSONString(userChartDTO));
+        UserWebSocketServer.sendMessage(user.getUserId(), JSON.toJSONString(userChartDTO));
         return result;
     }
     /**
@@ -97,7 +98,7 @@ public class UserController {
         // 拼装的用户数据（根据用户id、前台页面条件，列表查询用户表）
         UserChartDTO userChartDTO = userService.dealUserChartDtoByParams(params);
         // 通知前端
-        UserWebSocket.sendMessage(user.getUserId(), JSON.toJSONString(userChartDTO));
+        UserWebSocketServer.sendMessage(user.getUserId(), JSON.toJSONString(userChartDTO));
         return result;
     }
 }
