@@ -60,10 +60,11 @@ public class UserController {
      */
     @PostMapping("/user/addAndQueryByUserId")
     public UserDO addAndQueryByUserId(UserDO user) {
-        //保存数据
+        // 保存数据
         UserDO result = userService.addUser(user);
-        //拼装数据DTO通知前端
+        // 拼装数据DTO通知前端
         UserChartDTO userChartDTO = userService.dealUserChartDtoByUserId(user.getUserId());
+        // 通知前端，向前台发送消息
         WebSocketSendUtil.sendMessageToWebsocketJs(user.getUserId(), JSON.toJSONString(userChartDTO));
         return result;
     }
@@ -102,7 +103,7 @@ public class UserController {
         params.put("emailParam",emailParam);
         // 拼装的用户数据（根据用户id、前台页面条件，列表查询用户表）
         UserChartDTO userChartDTO = userService.dealUserChartDtoByParams(params);
-        // 通知前端
+        // 通知前端，向前台发送消息
         WebSocketSendUtil.sendMessageToWebsocketJs(user.getUserId(), JSON.toJSONString(userChartDTO));
         return result;
     }
