@@ -150,11 +150,11 @@ th:inline="javascript"这是Thymeleaf中的内联写法，支持在javascript访
             var jsonObject = JSON.parse(event.data);
             // 渲染数据到图表
             renderDataToEchart(jsonObject);
-        }
+        };
         // 监听断开连接
         ws.onclose = function () {
             console.log("关闭 websocket 连接...");
-        }
+        };
         // 监听窗口关闭事件，当窗口关闭时，主动去关闭websocket连接，防止连接还没断开就关闭窗口，server端会抛异常。
         window.onbeforeunload = function(){
             ws.close();
