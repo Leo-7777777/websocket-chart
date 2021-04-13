@@ -43,7 +43,7 @@ public class UserWebSocketServer {
      */
     private String userId;
     /**
-     * 存储 websocket session；
+     * 存储 websocket session；表示与某个用户的连接会话，通过它给用户终端发送数据
      */
     private Session session;
     /**
@@ -134,7 +134,7 @@ public class UserWebSocketServer {
      * @Param [session, message]
      * @Return void
      */
-    public static void sendMessageToJsWebsocket(Session session, String message) {
+    public static void sendMessageToWebsocketJs(Session session, String message) {
         if (session == null) {
             return;
         }
@@ -157,7 +157,7 @@ public class UserWebSocketServer {
      * Author: ljx
      * Date: 2021/3/24 0024 下午 3:35
      */
-    public static boolean sendMessageToJsWebsocket(String userId, String message) {
+    public static boolean sendMessageToWebsocketJs(String userId, String message) {
         if (userWebSocketMap.containsKey(userId)) {
             logger.debug(" 给用户 userId为：{}的所有终端发送消息：{}",userId,message);
             Set<UserWebSocketServer> userWsSet=userWebSocketMap.get(userId);
