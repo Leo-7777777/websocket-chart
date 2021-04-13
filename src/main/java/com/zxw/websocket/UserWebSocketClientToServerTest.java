@@ -34,6 +34,21 @@ public class UserWebSocketClientToServerTest {
         sendMessageToUserWebSocketServer();
     }
     /**
+     * @Description: websocket客户端，连接websocket服务端
+     * @return:
+     */
+    protected void connectUserWebSocketServer(){
+        WebSocketContainer container = ContainerProvider.getWebSocketContainer();
+        System.out.println("Connecting to" + uri);
+        try {
+            session = container.connectToServer(UserWebSocketClient.class, URI.create(uri));
+        } catch (DeploymentException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    /**
      * @Description: websocket客户端，发送消息到websocket服务端
      * @Param args:
      * @return:
@@ -51,21 +66,6 @@ public class UserWebSocketClientToServerTest {
         try {
             this.session.getBasicRemote().sendText(ConstantUtil.TO_WEBSOCKET_OF_CLIENT_TYPE2+"_"+message);
             this.session.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-    /**
-     * @Description: websocket客户端，连接websocket服务端
-     * @return:
-      */
-    protected void connectUserWebSocketServer(){
-        WebSocketContainer container = ContainerProvider.getWebSocketContainer();
-        System.out.println("Connecting to" + uri);
-        try {
-            session = container.connectToServer(UserWebSocketClient.class, URI.create(uri));
-        } catch (DeploymentException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
