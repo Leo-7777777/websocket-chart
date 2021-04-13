@@ -1,6 +1,6 @@
 package com.zxw.controller;
 
-import com.ljx.wcneln._09util.MapGetter;
+import com.ljx.wcneln._09util.maputil.MapGetter;
 import com.zxw.pojo.dto.UserChartDTO;
 import com.zxw.pojo.doo.UserDO;
 import com.zxw.service.UserService;
