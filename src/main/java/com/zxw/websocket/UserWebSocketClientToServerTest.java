@@ -1,5 +1,7 @@
 package com.zxw.websocket;
 
+import com.ljx.wcneln._09util.constantutil.ConstantUtil;
+
 import javax.websocket.ContainerProvider;
 import javax.websocket.DeploymentException;
 import javax.websocket.Session;
@@ -21,7 +23,6 @@ import java.net.URI;
  */
 public class UserWebSocketClientToServerTest {
     private String uri = "ws://192.168.21.21:8090/websocket-chart/userws/";
-    private String clientToWebsocketType="websocketClient";
     private Session session;
     public void main(String args[]) {
         // websocket客户端，发送消息到websocket服务端
@@ -40,7 +41,7 @@ public class UserWebSocketClientToServerTest {
             message = args[0];
         }
         try {
-            this.session.getBasicRemote().sendText(clientToWebsocketType+"_"+message);
+            this.session.getBasicRemote().sendText(ConstantUtil.TO_WEBSOCKET_OF_CLIENT_TYPE2+"_"+message);
             this.session.close();
         } catch (IOException e) {
             e.printStackTrace();
