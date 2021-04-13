@@ -100,6 +100,8 @@ th:inline="javascript"这是Thymeleaf中的内联写法，支持在javascript访
     var urlPrefix = 'ws://192.168.21.21:8090'+ctx+'userws/';
     var ws = null;
     var userId="dkh";
+    // 到websocket服务端，的客户端类型
+    var toWebsocketOfClientType="websocketJs";
     // ##---------- 二、页面加载执行
     $(function () {
         // 先ajax_后台根据用户id，获取用户信息；并在页面图表中第一次初始化显示此数据；
@@ -146,7 +148,7 @@ th:inline="javascript"这是Thymeleaf中的内联写法，支持在javascript访
             var messageObj={province:"河北省",city:"石家庄市",emailWsParam:emailWsParam};
             var message=JSON.stringify(messageObj);
             // 客户端ws.send发送的消息（或心跳信息）message：可以是字符串、二进制数据
-            ws.send(message);
+            ws.send(toWebsocketOfClientType+"_"+message);
         };
         // 前端接收消息/监听后端的消息推送
         ws.onmessage = function (event) {

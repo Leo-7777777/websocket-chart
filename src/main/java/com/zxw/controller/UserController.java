@@ -1,6 +1,7 @@
 package com.zxw.controller;
 
-import com.ljx.wcneln._09util.MapGetter;
+import com.ljx.wcneln._09util.constantutil.ConstantUtil;
+import com.ljx.wcneln._09util.maputil.MapGetter;
 import com.zxw.pojo.doo.UserDO;
 import com.zxw.pojo.dto.UserChartDTO;
 import com.zxw.service.UserService;
@@ -129,7 +130,24 @@ public class UserController {
 
     @OnMessage
     public void onMessage(@PathParam("userId") String userId, String message) {
-        System.out.println(userId + "前台用户终端【浏览器】页面，ws.send发送的消息（或心跳信息）：" + message);
+        // 前台用户终端【浏览器】页面，ws.send发送的消息（或心跳信息）
+        if(message.startsWith(ConstantUtil.TO_WEBSOCKET_OF_CLIENT_TYPE1)){
+            System.out.println(userId + "前台用户终端【浏览器】页面，ws.send发送的消息（或心跳信息）：" + message);
+            // --接收并处理消息
+
+            // --通知前端，向前台发送消息
+
+        }
+        // 后台服务器的websocket客户端|ClientEndpoint|Java服务器，UserWebSocketClient.java发送的消息（或心跳信息）
+        else if(message.startsWith(ConstantUtil.TO_WEBSOCKET_OF_CLIENT_TYPE2)){
+            // --接收并处理消息
+            // --通知前端，向前台发送消息
+            // 从session中，获取当前登录用户id
+            userId="";
+            // 根据条件，列表查询用户表
+            UserChartDTO userChartDTO =new UserChartDTO();
+            WebSocketSendUtil.sendMessageToWebsocketJs(userId, JSON.toJSONString(userChartDTO));
+        }
     }
 
     @OnClose
