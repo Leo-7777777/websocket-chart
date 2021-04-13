@@ -29,6 +29,11 @@ import java.util.Map;
 @ClientEndpoint
 public class UserWebSocketClient {
         /*######################## 一、发送 消息的 websocket客户端 ########################*/
+        /**
+         * @Description:
+         * @Param session:
+         * @return:
+          */
         @OnOpen
         public void open(Session session){
                 System.out.println("Client WebSocket is opening...");
