@@ -1,10 +1,6 @@
 package com.zxw.websocket;
-
-import com.ljx.wcneln._09util.constantutil.ConstantUtil;
-
 import javax.websocket.*;
 import java.io.IOException;
-import java.net.URI;
 /**
  * @author ljx
  * @Description: 后台服务器的websocket客户端|ClientEndpoint|Java服务器|数据库触发器的外部程序或接口

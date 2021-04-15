@@ -1,14 +1,11 @@
 package com.zxw.websocket;
-
 import com.ljx.wcneln._09util.constantutil.ConstantUtil;
-
 import javax.websocket.ContainerProvider;
 import javax.websocket.DeploymentException;
 import javax.websocket.Session;
 import javax.websocket.WebSocketContainer;
 import java.io.IOException;
 import java.net.URI;
-
 /**
  * @author ljx
  * @Description: websocket客户端，发送消息到websocket服务端
