@@ -1,4 +1,4 @@
-package com.zxw.pojo.dto;
+package com.ljx.wsc.pojo.dto;
 
 /**
  * @Description: 图表结果DTO

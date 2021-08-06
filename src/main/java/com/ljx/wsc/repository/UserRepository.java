@@ -1,6 +1,6 @@
-package com.zxw.repository;
+package com.ljx.wsc.repository;
 
-import com.zxw.pojo.doo.UserDO;
+import com.ljx.wsc.pojo.doo.UserDO;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

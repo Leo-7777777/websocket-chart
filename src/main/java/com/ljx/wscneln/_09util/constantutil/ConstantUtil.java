@@ -1,4 +1,4 @@
-package com.ljx.wcneln._09util.constantutil;
+package com.ljx.wscneln._09util.constantutil;
 
 /**
  * @author ljx
