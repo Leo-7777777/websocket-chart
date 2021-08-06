@@ -1,4 +1,4 @@
-package com.zxw.pojo.doo;
+package com.ljx.wsc.pojo.doo;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

@@ -1,11 +1,11 @@
-package com.zxw.controller;
+package com.ljx.wsc.controller;
 
-import com.ljx.wcneln._09util.maputil.MapGetter;
-import com.zxw.pojo.dto.UserChartDTO;
-import com.zxw.pojo.doo.UserDO;
-import com.zxw.service.UserService;
+import com.ljx.wsc.websocket.UserWebSocketServer;
+import com.ljx.wscneln._09util.maputil.MapGetter;
+import com.ljx.wsc.pojo.dto.UserChartDTO;
+import com.ljx.wsc.pojo.doo.UserDO;
+import com.ljx.wsc.service.UserService;
 import com.alibaba.fastjson.JSON;
-import com.zxw.websocket.UserWebSocketServer;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;

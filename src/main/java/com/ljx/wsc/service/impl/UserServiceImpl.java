@@ -1,9 +1,9 @@
-package com.zxw.service.impl;
+package com.ljx.wsc.service.impl;
 
-import com.zxw.pojo.dto.UserChartDTO;
-import com.zxw.pojo.doo.UserDO;
-import com.zxw.repository.UserRepository;
-import com.zxw.service.UserService;
+import com.ljx.wsc.service.UserService;
+import com.ljx.wsc.pojo.dto.UserChartDTO;
+import com.ljx.wsc.pojo.doo.UserDO;
+import com.ljx.wsc.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;

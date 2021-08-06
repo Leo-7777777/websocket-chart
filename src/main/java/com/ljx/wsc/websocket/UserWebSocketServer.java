@@ -1,8 +1,8 @@
-package com.zxw.websocket;
+package com.ljx.wsc.websocket;
 
 import com.alibaba.fastjson.JSON;
-import com.ljx.wcneln._09util.constantutil.ConstantUtil;
-import com.zxw.pojo.dto.UserChartDTO;
+import com.ljx.wscneln._09util.constantutil.ConstantUtil;
+import com.ljx.wsc.pojo.dto.UserChartDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
